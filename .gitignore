@@ -1,0 +1,13 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+.vite
+
+# Large media — keep the tutorial mp4s out of git; see public/videos/README.md
+public/videos/*.mp4
+
+# build artifacts
+*.tsbuildinfo
+vite.config.ts.timestamp-*.mjs
