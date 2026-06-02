@@ -101,18 +101,24 @@ export const ARTICLES: Article[] = [
     lastUpdatedISO: '2026-06-01',
     estReadMinutes: 6,
     video: {
-      // Drop the real mp4s into /public/videos (see README). The player falls
-      // back gracefully to a poster + message if the file is absent.
+      // Hosted video links — the player embeds these automatically. Works with
+      // Google Drive, YouTube, or Vimeo share URLs (or a direct .mp4 URL).
+      //
+      // IMPORTANT for Google Drive: each file must be shared
+      // "Anyone with the link – Viewer", or the embed will show a sign-in / error.
+      // These two point at the files already in the Safi Drive tutorial folder.
       sources: [
         {
           lang: 'en',
           label: 'English',
-          src: '/videos/quality-control-en.mp4',
+          // "Quality control - eng voice over, German captions.mp4"
+          src: 'https://drive.google.com/file/d/1ZuMNoKeAdV50O_O7kFLjZHFFHsMGYYos/view',
         },
         {
           lang: 'de',
           label: 'Deutsch',
-          src: '/videos/quality-control-de.mp4',
+          // "Quality_control_tutorial-German_with_captions.mp4"
+          src: 'https://drive.google.com/file/d/13EbNTneciz7badRqYTeR4veJUj8B2_DD/view',
         },
       ],
     },
