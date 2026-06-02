@@ -26,6 +26,7 @@ export interface MediaPlaceholder {
 export type ContentBlock =
   | { type: 'paragraph'; body: string }
   | { type: 'callout'; variant: 'note' | 'tip' | 'important'; body: string }
+  | { type: 'list'; ordered?: boolean; items: string[] }
   | { type: 'media'; media: MediaPlaceholder };
 
 export interface Step {
@@ -39,6 +40,11 @@ export interface ArticleSection {
   id: string;
   heading: string;
   intro?: string;
+  /**
+   * 'alert' renders the entire section inside a Safi purple alert dialogue
+   * (used for "Before you begin"). Defaults to 'default'.
+   */
+  display?: 'default' | 'alert';
   blocks?: ContentBlock[];
   steps?: Step[];
 }

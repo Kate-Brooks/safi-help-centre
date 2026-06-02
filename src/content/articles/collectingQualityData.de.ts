@@ -2,12 +2,12 @@ import type { ArticleContent } from '../types';
 
 /**
  * German content for "Collecting quality data" / „Qualitätsdaten erfassen".
- * Section ids match the English version so anchors and prev/next stay aligned.
+ * Mirrors the English structure (same section ids, same screenshot slots).
  */
 export const collectingQualityDataDe: ArticleContent = {
   title: 'Qualitätsdaten erfassen',
   summary:
-    'Mit der Safi AI App fotografieren Sie Material, erstellen einen KI-Qualitätsbericht und prüfen die Ergebnisse anhand Ihrer Materialspezifikationen.',
+    'Analysieren Sie mit Safi AI die Materialqualität, erstellen Sie einen KI-Qualitätsbericht und prüfen Sie die Ergebnisse anhand Ihrer Materialspezifikationen.',
   transcript: `Willkommen bei der Qualitätskontrolle von Safi AI. In diesem Video zeigen wir Ihnen, wie Sie mit Safi AI die Materialqualität analysieren und KI-Berichte erstellen.
 
 Laden Sie zunächst die Safi AI App aus dem App Store herunter. Für die beste Leistung empfehlen wir ein iPhone 14 Pro oder neuer.
@@ -45,35 +45,11 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
     {
       id: 'before-you-begin',
       heading: 'Bevor Sie beginnen',
-      intro:
-        'Qualitätsdaten werden in der Safi AI iOS-App vom Bediener auf dem Hof erfasst. Richten Sie dies einmalig vor Ihrer ersten Analyse ein.',
-      steps: [
+      display: 'alert',
+      blocks: [
         {
-          title: 'Safi AI App herunterladen',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Laden Sie die Safi AI App aus dem App Store herunter und melden Sie sich mit Ihrem Safi-Konto an.',
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Der Safi AI App-Eintrag im iOS App Store.',
-                caption: 'Safi AI im App Store.',
-              },
-            },
-          ],
-        },
-        {
-          title: 'Empfohlenes Gerät verwenden',
-          blocks: [
-            {
-              type: 'callout',
-              variant: 'tip',
-              body: 'Für die beste Kamera- und KI-Leistung empfehlen wir ein **iPhone 14 Pro oder neuer**. Ältere Geräte funktionieren, nehmen aber möglicherweise langsamer auf.',
-            },
-          ],
+          type: 'paragraph',
+          body: 'Laden Sie die [Safi AI App](https://apps.apple.com/gb/app/safi-ai/id6757709968) aus dem App Store herunter. Für die beste Leistung empfehlen wir ein **iPhone 14 Pro oder neuer**.',
         },
       ],
     },
@@ -82,38 +58,40 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
       heading: 'Eine Analyse starten',
       steps: [
         {
-          title: 'Ladung in der Qualitätskontrolle öffnen',
+          title: 'App öffnen und zur Qualitätskontrolle gehen',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Öffnen Sie die App und gehen Sie zur **Qualitätskontrolle**. Wenn die Ladung bereits vorhanden ist, suchen Sie sie und tippen Sie auf **Jetzt analysieren**, oder öffnen Sie die Ladung für die Details und tippen Sie unten auf **Analysieren**.',
+              body: 'Wenn die Ladung bereits vorhanden ist, suchen Sie sie und tippen Sie auf **Jetzt analysieren**, oder öffnen Sie die Ladung für die Details und tippen Sie unten auf **Analysieren**.',
             },
             {
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Ladungsliste der Qualitätskontrolle in der App mit der Schaltfläche „Jetzt analysieren".',
-                caption: 'Ladung suchen und auf „Jetzt analysieren" tippen.',
+                alt: 'Ladungsliste der Qualitätskontrolle mit der Aktion „Jetzt analysieren" bei einer Ladung.',
               },
             },
           ],
         },
         {
-          title: 'Materialform auswählen',
+          title: 'Kamera einrichten',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Wählen Sie die Materialform für diese Ladung, damit Safi weiß, was analysiert wird.',
+              type: 'list',
+              ordered: true,
+              items: ['Wählen Sie die Materialform.', 'Aktivieren Sie den Offline-Modus bei schwachem Signal.'],
             },
-          ],
-        },
-        {
-          title: 'Offline-Modus bei schwachem Signal aktivieren',
-          blocks: [
             {
               type: 'callout',
               variant: 'tip',
-              body: 'Bei schwacher Daten- oder Signalverbindung aktivieren Sie den **Offline-Modus**. Fotos werden sicher auf Ihrem Telefon gespeichert und können später über WLAN hochgeladen werden – so blockiert die Verbindung Sie nie auf dem Hof.',
+              body: 'Im Offline-Modus werden Fotos sicher auf Ihrem Telefon gespeichert und können später über WLAN hochgeladen werden – so müssen Sie sich keine Sorgen machen, Fotos zu verlieren.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Einrichtungsbildschirm der Kamera mit den Materialform-Optionen und dem Offline-Modus-Schalter.',
+              },
             },
           ],
         },
@@ -122,29 +100,32 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           blocks: [
             {
               type: 'paragraph',
-              body: 'Tippen Sie auf **Kamera öffnen**, um mit dem Fotografieren des Materials zu beginnen.',
+              body: 'Öffnen Sie die Kamera, um mit dem Fotografieren des Materials zu beginnen.',
             },
           ],
         },
       ],
     },
     {
-      id: 'capture-photos',
+      id: 'taking-photos',
       heading: 'Material fotografieren',
       steps: [
         {
           title: 'Material ins Bild rücken',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Stellen Sie sich vor das Material und richten Sie die Kamera darauf. Safi führt Sie zum richtigen Abstand und Winkel und nimmt das Foto automatisch auf, sobald die Bildausrichtung stimmt.',
+              type: 'list',
+              ordered: true,
+              items: [
+                'Stellen Sie sich vor das Material und richten Sie die Kamera darauf.',
+                'Safi führt Sie zum richtigen Abstand und Winkel und nimmt das Foto automatisch auf, sobald die Bildausrichtung stimmt.',
+              ],
             },
             {
               type: 'media',
               media: {
                 kind: 'gif',
-                alt: 'Kameraansicht mit dem Bildschirmrahmen, der den Bediener zum richtigen Abstand und Winkel führt.',
-                caption: 'Safi führt Sie vor der Aufnahme zum richtigen Abstand und Winkel.',
+                alt: 'Kameraansicht, die den Bediener vor der automatischen Aufnahme zum richtigen Abstand und Winkel führt.',
               },
             },
           ],
@@ -153,94 +134,108 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           title: 'Automatische oder manuelle Aufnahme wählen',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Safi unterstützt sowohl die automatische als auch die manuelle Aufnahme.',
-            },
-            {
               type: 'callout',
-              variant: 'note',
-              body: 'Wir empfehlen die **automatische Aufnahme** für einen schnellen, nahtlosen Arbeitsablauf. **Einstellungen** (z. B. Offline-Modus und Vibrationsalarme) und der **Blitz** für schwaches Licht oder Nachtschichten befinden sich oben rechts in der Kamera.',
+              variant: 'tip',
+              body: 'Wir empfehlen die **automatische Aufnahme** für einen schnellen, nahtlosen Arbeitsablauf.',
             },
           ],
         },
-      ],
-    },
-    {
-      id: 'best-coverage',
-      heading: 'Beste Abdeckung erzielen',
-      blocks: [
         {
-          type: 'callout',
-          variant: 'important',
-          body: 'Für möglichst genaue Ergebnisse nehmen Sie **mindestens 10 Fotos pro Ladung** auf. Vermeiden Sie die stark verdichtete Seite des Ballens und konzentrieren Sie sich auf die flacheren Ballenflächen.',
-        },
-        {
-          type: 'media',
-          media: {
-            kind: 'screenshot',
-            alt: 'Diagramm, das die zu fotografierenden flachen Ballenflächen und die zu vermeidende verdichtete Seite zeigt.',
-            caption: 'Fotografieren Sie die flacheren Flächen; vermeiden Sie die verdichtete Seite.',
-          },
-        },
-      ],
-    },
-    {
-      id: 'review-library',
-      heading: 'Fotos in der Bibliothek überprüfen',
-      steps: [
-        {
-          title: 'Fotobibliothek öffnen',
+          title: 'Fotobibliothek',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Sie können Ihre Fotos jederzeit in der Fotobibliothek überprüfen.',
-            },
-            {
-              type: 'callout',
-              variant: 'note',
-              body: 'Wird ein Problem erkannt, erscheint neben der Bibliotheksschaltfläche und beim betroffenen Foto ein **rotes oder gelbes Symbol**. Rot kennzeichnet einen Fehler, Gelb eine Warnung.',
+              type: 'list',
+              items: [
+                'Sie können die Fotos hier jederzeit überprüfen.',
+                'Wird ein Problem erkannt, erscheint neben der Bibliotheksschaltfläche und beim betroffenen Foto in der Bibliotheksansicht ein rotes oder gelbes Symbol.',
+              ],
             },
           ],
         },
-      ],
-    },
-    {
-      id: 'complete-report',
-      heading: 'Bericht abschließen',
-      steps: [
         {
-          title: 'KI-Analyse erstellen',
+          title: 'Kameraeinstellungen & Werkzeuge',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Einstellungen wie der Offline-Modus oder Vibrationsalarme sind oben rechts zugänglich.',
+                'Für schwaches Licht oder Nachtschichten steht ein Blitz zur Verfügung.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Kamerabildschirm mit den Einstellungen und dem Blitz oben rechts.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Für die beste Abdeckung',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Nehmen Sie mindestens 10 Fotos pro Ladung auf – je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
+                'Vermeiden Sie die stark verdichtete Seite des Ballens und konzentrieren Sie sich auf die flacheren Ballenflächen.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Diagramm eines Ballens, das die zu fotografierenden flachen Flächen und die zu vermeidende verdichtete Seite zeigt.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Analyse abschließen',
           blocks: [
             {
               type: 'paragraph',
               body: 'Sobald Sie mit der Fotoabdeckung zufrieden sind, schließen Sie den Bericht ab, um Ihre KI-Analyse zu erstellen.',
             },
             {
-              type: 'callout',
-              variant: 'note',
-              body: 'Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden – entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.',
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Abschließen des Berichts zur Erstellung der KI-Analyse.',
+              },
             },
           ],
         },
       ],
     },
     {
-      id: 'read-results',
-      heading: 'KI-Ergebnisse lesen',
+      id: 'read-your-results',
+      heading: 'Ergebnisse lesen',
       steps: [
         {
           title: 'Zusammensetzungstabelle prüfen',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Nach der Analyse vergleicht die Zusammensetzungstabelle die in den Einstellungen festgelegten Materialspezifikationen mit den tatsächlichen Ergebnissen der KI.',
+              body: 'Nach der Analyse der Fotos sehen Sie die Zusammensetzungstabelle, in der die in den Einstellungen festgelegten Materialspezifikationen mit den tatsächlichen Ergebnissen der KI verglichen werden.',
             },
             {
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Zusammensetzungstabelle, die Ziel-Materialspezifikationen mit KI-Ergebnissen vergleicht, mit Zeilen innerhalb und außerhalb der Spezifikation.',
-                caption: 'Die Zusammensetzungstabelle: Zielspezifikation vs. KI-Ergebnis.',
+                alt: 'Zusammensetzungstabelle, die Ziel-Materialspezifikationen mit den KI-Ergebnissen vergleicht.',
+              },
+            },
+            {
+              type: 'callout',
+              variant: 'important',
+              body: 'Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden – entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Hochladen von Offline-Fotos von der Berichtsseite über WLAN.',
               },
             },
           ],
@@ -249,58 +244,93 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           title: 'Analysierte Fotos erkunden',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Öffnen Sie den Bericht und gehen Sie zum Tab **Fotos**, dann wählen Sie **KI-Ballen**, um jedes Foto der Sitzung zu sehen. Safi zeigt den analysierten Ballenumriss und die erkannten Materialien – blenden Sie jedes Material zum Prüfen ein und aus.',
+              type: 'list',
+              ordered: true,
+              items: [
+                'Suchen Sie die Ladung und wählen Sie den Bericht aus.',
+                'Gehen Sie zum Tab **Fotos**.',
+                'Wählen Sie das Album **KI-Ballen**, um die während der Sitzung aufgenommenen Fotos zu sehen.',
+                'Für jedes Foto wird der analysierte Bereich des Ballenumrisses zusammen mit den von der KI erkannten Materialien angezeigt, die Sie ein- und ausblenden können.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'gif',
+                alt: 'Album „KI-Ballen", das die erkannten Materialumrisse beim Ein- und Ausblenden zeigt.',
+              },
             },
           ],
         },
         {
-          title: 'KI-Erkennungsproblem melden',
+          title: 'Die KI auf Ihr Material trainieren',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Wenn Ihnen ein Problem mit der KI auffällt, etwa dass das falsche Objekt erkannt wurde, halten Sie das Foto gedrückt (auf dem Mobilgerät) oder klicken Sie mit der rechten Maustaste darauf (am Desktop), um einen Kommentar zu hinterlassen.',
+                'Ihr Kommentar geht direkt an unser Machine-Learning-Team, damit wir die Daten Ihres Standorts weiter verbessern können.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Hinterlassen eines Kommentars zu einem Foto, um ein KI-Erkennungsproblem zu melden.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Hochgeladene Fotos analysieren',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Laden Sie Fotos von Ihrem Gerät zur Analyse während der Einrichtungsschritte hoch,',
+                'oder über die Fotobibliothek des Berichts mit der Schaltfläche zum Hochladen.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Hochladen von Gerätefotos zur Analyse über die Fotobibliothek des Berichts.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Berichte teilen und herunterladen',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Wenn Ihnen ein Problem auffällt – etwa dass das falsche Objekt erkannt wurde – halten Sie das Foto gedrückt und hinterlassen Sie einen Kommentar. Er geht direkt an unser Machine-Learning-Team, um die Daten Ihres Standorts weiter zu verbessern.',
+              body: 'Berichte können einfach mit Kolleginnen und Kollegen geteilt werden, und Sie können ein PDF des Berichts mit allen Fotos und Daten herunterladen.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Teilen eines Berichts mit Kolleginnen und Kollegen und Herunterladen als PDF.',
+              },
             },
           ],
         },
         {
-          title: 'Gerätefotos hochladen (optional)',
+          title: 'Ladungen bei Ankunft anlegen',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Sie können auch Fotos von Ihrem Gerät zur Analyse hochladen – in den Einrichtungsschritten oder über die Fotobibliothek des Berichts mit der Schaltfläche zum Hochladen.',
+              body: 'Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter **Qualität** die Option **Ladung anlegen**. Achten Sie darauf, die richtige Materialspezifikation zu wählen, um Ihren Berichten einen sinnvollen Kontext zu geben – mehr dazu in einer separaten Anleitung.',
             },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'share-and-export',
-      heading: 'Teilen und exportieren',
-      steps: [
-        {
-          title: 'Bericht teilen oder herunterladen',
-          blocks: [
             {
-              type: 'paragraph',
-              body: 'Berichte können mit Kolleginnen und Kollegen geteilt werden, und Sie können ein PDF mit allen Fotos und Daten herunterladen.',
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Anlegen einer Ladung bei Ankunft und Auswahl ihrer Materialspezifikation.',
+              },
             },
           ],
-        },
-      ],
-    },
-    {
-      id: 'create-loads-on-arrival',
-      heading: 'Ladungen bei Ankunft anlegen',
-      blocks: [
-        {
-          type: 'paragraph',
-          body: 'Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter **Qualität** die Option **Ladung anlegen**.',
-        },
-        {
-          type: 'callout',
-          variant: 'important',
-          body: 'Wählen Sie immer die richtige **Materialspezifikation**, damit Ihre Berichte einen sinnvollen Kontext haben – das behandeln wir in einer separaten Anleitung.',
         },
       ],
     },

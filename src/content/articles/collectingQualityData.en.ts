@@ -2,13 +2,14 @@ import type { ArticleContent } from '../types';
 
 /**
  * English content for "Collecting quality data".
- * Authored from the Safi QC tutorial transcript (Google Drive, June 2026).
+ * Structure follows the approved draft (Google Doc, June 2026):
+ * a "Before you begin" alert + three numbered sections.
  * Section ids are stable across locales so anchor links survive a language switch.
  */
 export const collectingQualityDataEn: ArticleContent = {
   title: 'Collecting quality data',
   summary:
-    'Use the Safi AI app to photograph material, generate an AI quality report, and review the results against your material specifications.',
+    'Use Safi AI to analyse material quality, generate an AI quality report and review the results against your material specifications.',
   transcript: `Welcome to Safi AI Quality Control. In this video, we'll show you how to analyse material quality and generate AI reports using Safi AI.
 
 First, download the Safi AI app from the App Store. We recommend using an iPhone 14 Pro or newer for best performance.
@@ -46,35 +47,11 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
     {
       id: 'before-you-begin',
       heading: 'Before you begin',
-      intro:
-        'Quality data is collected in the Safi AI iOS app by the operator on the yard. Set this up once before your first analysis.',
-      steps: [
+      display: 'alert',
+      blocks: [
         {
-          title: 'Download the Safi AI app',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Download the Safi AI app from the App Store and sign in with your Safi account.',
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'The Safi AI app listing on the iOS App Store.',
-                caption: 'Safi AI on the App Store.',
-              },
-            },
-          ],
-        },
-        {
-          title: 'Use a recommended device',
-          blocks: [
-            {
-              type: 'callout',
-              variant: 'tip',
-              body: 'For the best camera and AI performance we recommend an **iPhone 14 Pro or newer**. Older devices work but may capture more slowly.',
-            },
-          ],
+          type: 'paragraph',
+          body: 'Download the [Safi AI app](https://apps.apple.com/gb/app/safi-ai/id6757709968) from the App Store. We recommend using an **iPhone 14 Pro or newer** for best performance.',
         },
       ],
     },
@@ -83,38 +60,40 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
       heading: 'Start an analysis',
       steps: [
         {
-          title: 'Open the load in Quality Control',
+          title: 'Open the app and go to Quality Control',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Open the app and go to **Quality Control**. If the load already exists, find it and tap **Analyse now**, or open the load to see its details and tap **Analyse** at the bottom.',
+              body: 'If the load already exists, find it and tap **Analyse now**, or open the load to see its details and tap **Analyse** at the bottom.',
             },
             {
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Quality Control load list in the app with an Analyse now button on a load.',
-                caption: 'Find the load and tap Analyse now.',
+                alt: 'Quality Control load list with the Analyse now action on a load.',
               },
             },
           ],
         },
         {
-          title: 'Choose the material form',
+          title: 'Set up the camera',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Select the material form for this load so Safi knows what it is analysing.',
+              type: 'list',
+              ordered: true,
+              items: ['Choose the material form.', 'Turn on Offline mode if signal is weak.'],
             },
-          ],
-        },
-        {
-          title: 'Turn on Offline mode if signal is weak',
-          blocks: [
             {
               type: 'callout',
               variant: 'tip',
-              body: 'If your site has weak data or signal, turn on **Offline mode**. Photos are stored safely on your phone and can be uploaded over Wi-Fi later — so you are never blocked by connectivity in the yard.',
+              body: 'Offline mode safely stores photos on your phone and they can be uploaded over Wi-Fi later, so you don’t have to worry about losing photos.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Camera set-up screen showing the material form options and the Offline mode toggle.',
+              },
             },
           ],
         },
@@ -123,29 +102,32 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           blocks: [
             {
               type: 'paragraph',
-              body: 'Tap **Open camera** to start photographing the material.',
+              body: 'Open the camera to start photographing the material.',
             },
           ],
         },
       ],
     },
     {
-      id: 'capture-photos',
-      heading: 'Capture photos of the material',
+      id: 'taking-photos',
+      heading: 'Taking photos of the material',
       steps: [
         {
           title: 'Frame the material',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Stand in front of the material and point the camera towards it. Safi guides you to the correct distance and angle, then takes the photo automatically once the framing is right.',
+              type: 'list',
+              ordered: true,
+              items: [
+                'Stand in front of the material, pointing the camera towards it.',
+                'Safi guides you to the correct distance and angle, then takes the photo automatically once the framing is right.',
+              ],
             },
             {
               type: 'media',
               media: {
                 kind: 'gif',
-                alt: 'Camera view with the on-screen frame guiding the operator to the correct distance and angle.',
-                caption: 'Safi guides you to the right distance and angle before capturing.',
+                alt: 'Camera view guiding the operator to the correct distance and angle before automatically capturing.',
               },
             },
           ],
@@ -154,94 +136,108 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           title: 'Choose automatic or manual capture',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Safi supports both automatic and manual capture.',
-            },
-            {
               type: 'callout',
-              variant: 'note',
-              body: 'We recommend **Automatic Capture** for a fast, seamless workflow. **Settings** (such as Offline mode and alert vibrations) and **Flash** for low-light or night shifts are in the top-right corner of the camera.',
+              variant: 'tip',
+              body: 'We recommend **Automatic Capture** for a fast, seamless workflow.',
             },
           ],
         },
-      ],
-    },
-    {
-      id: 'best-coverage',
-      heading: 'Get the best coverage',
-      blocks: [
         {
-          type: 'callout',
-          variant: 'important',
-          body: 'For the most accurate results, capture **at least 10 photos per load**. Avoid the highly compressed side of the bale and focus on the flatter bale faces.',
+          title: 'Photo library',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'You can review photos here at any time.',
+                'If an issue is detected, a red or yellow indicator appears next to the library button and on the affected photo in the library view.',
+              ],
+            },
+          ],
         },
         {
-          type: 'media',
-          media: {
-            kind: 'screenshot',
-            alt: 'Diagram showing the flat faces of a bale to photograph versus the compressed side to avoid.',
-            caption: 'Photograph the flatter faces; avoid the compressed side.',
-          },
+          title: 'Camera settings & tools',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Settings such as Offline mode or alert vibrations can be accessed in the top-right corner.',
+                'Flash is available for low-light or night-shift environments.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Camera screen with the settings and flash controls in the top-right corner.',
+              },
+            },
+          ],
         },
-      ],
-    },
-    {
-      id: 'review-library',
-      heading: 'Review photos in the library',
-      steps: [
         {
-          title: 'Open the photo library',
+          title: 'For best coverage',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Capture at least 10 photos per load — the more photos you take, the more representative the AI results are of the load.',
+                'Avoid photographing the highly compressed side of the bale and focus on the flatter bale faces.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Diagram of a bale showing the flat faces to photograph and the compressed side to avoid.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Complete the analysis',
           blocks: [
             {
               type: 'paragraph',
-              body: 'You can review your photos at any time in the photo library.',
+              body: 'Once you’re happy with the photo coverage, complete the report to generate your AI analysis.',
             },
             {
-              type: 'callout',
-              variant: 'note',
-              body: 'If an issue is detected, a **red or yellow indicator** appears next to the library button and on the affected photo. Red flags an error; yellow flags a warning.',
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Completing the report to generate the AI analysis.',
+              },
             },
           ],
         },
       ],
     },
     {
-      id: 'complete-report',
-      heading: 'Complete the report',
-      steps: [
-        {
-          title: 'Generate your AI analysis',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Once you are happy with the photo coverage, complete the report to generate your AI analysis.',
-            },
-            {
-              type: 'callout',
-              variant: 'note',
-              body: 'Photos captured in Offline mode can be uploaded later over Wi-Fi — either from the report page or from the Quality Control home page.',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'read-results',
-      heading: 'Read your AI results',
+      id: 'read-your-results',
+      heading: 'Read your results',
       steps: [
         {
           title: 'Review the composition table',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Once the photos are analysed, the composition table compares the material specifications set up in Settings against the AI’s actual results.',
+              body: 'Once the photos have been analysed, you’ll see the composition table comparing the material specifications set up in Settings against the actual results of the AI.',
             },
             {
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Composition table comparing target material specifications against AI results, with in-spec and out-of-spec rows.',
-                caption: 'The composition table: target spec vs. AI result.',
+                alt: 'Composition table comparing target material specifications against the AI results.',
+              },
+            },
+            {
+              type: 'callout',
+              variant: 'important',
+              body: 'Photos captured in Offline mode can be uploaded later over Wi-Fi, either from the report page or from the Quality Control home page.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Uploading offline photos from the report page over Wi-Fi.',
               },
             },
           ],
@@ -250,58 +246,93 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           title: 'Explore the analysed photos',
           blocks: [
             {
-              type: 'paragraph',
-              body: 'Open the report and go to the **Photos** tab, then select **AI Bale** to see every photo from the session. Safi shows the analysed bale outline and the materials it detected — toggle each material on and off to inspect it.',
+              type: 'list',
+              ordered: true,
+              items: [
+                'Find the load and select the report.',
+                'Go to the **Photos** tab.',
+                'Select the **AI Bale** album to see the photos taken during the session.',
+                'For each photo, the analysed area of the bale outline is shown along with the materials detected by the AI, which you can toggle on and off.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'gif',
+                alt: 'AI Bale album showing the detected material outlines being toggled on and off.',
+              },
             },
           ],
         },
         {
-          title: 'Flag an AI detection issue',
+          title: 'Training the AI on your material',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'If you notice an issue with the AI, such as the wrong object being detected, press and hold on the photo (on mobile) or right-click it (on desktop) to leave a comment.',
+                'Your comment goes directly to our machine learning team so we can keep improving your site’s data.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Leaving a comment on a photo to flag an AI detection issue.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Analyse uploaded photos',
+          blocks: [
+            {
+              type: 'list',
+              items: [
+                'Upload photos from your device to be analysed during the set-up steps,',
+                'or via the report’s photo library using the upload button.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Uploading device photos for analysis from the report’s photo library.',
+              },
+            },
+          ],
+        },
+        {
+          title: 'Share and download reports',
           blocks: [
             {
               type: 'paragraph',
-              body: 'If you spot a problem — for example the wrong object was detected — press and hold on the photo and leave a comment. It goes directly to our machine learning team to keep improving your site’s data.',
+              body: 'Reports can easily be shared with colleagues, and you can download a PDF of the report containing all of the photos and the data.',
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Sharing a report with colleagues and downloading it as a PDF.',
+              },
             },
           ],
         },
         {
-          title: 'Upload device photos (optional)',
+          title: 'Create loads as they arrive',
           blocks: [
             {
               type: 'paragraph',
-              body: 'You can also upload photos from your device to be analysed — during the set-up steps, or from the report’s photo library using the upload button.',
+              body: 'If your site doesn’t import loads into Safi in advance, you can create loads as they arrive at the yard. In **Quality**, select **Create load**. Make sure you choose the correct material specification to give your reports meaningful context — more on that in a separate guide.',
             },
-          ],
-        },
-      ],
-    },
-    {
-      id: 'share-and-export',
-      heading: 'Share and export',
-      steps: [
-        {
-          title: 'Share or download the report',
-          blocks: [
             {
-              type: 'paragraph',
-              body: 'Reports can be shared with colleagues, and you can download a PDF containing all of the photos and the data.',
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Creating a load on arrival and choosing its material specification.',
+              },
             },
           ],
-        },
-      ],
-    },
-    {
-      id: 'create-loads-on-arrival',
-      heading: 'Creating loads on arrival',
-      blocks: [
-        {
-          type: 'paragraph',
-          body: 'If your site doesn’t import loads into Safi in advance, you can create loads as they arrive at the yard. In **Quality**, select **Create load**.',
-        },
-        {
-          type: 'callout',
-          variant: 'important',
-          body: 'Always choose the correct **material specification** so your reports have meaningful context — we cover this in a separate guide.',
         },
       ],
     },
