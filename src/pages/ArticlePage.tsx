@@ -21,7 +21,6 @@ import { safiTokens } from '../theme';
 import { ArticleBody } from '../components/ArticleBody';
 import { OnThisPage } from '../components/OnThisPage';
 import { ShareBar } from '../components/ShareBar';
-import { PlanBadge } from '../components/PlanBadge';
 import { VideoPlayer } from '../components/VideoPlayer';
 import { ArticleNav } from '../components/ArticleNav';
 
@@ -115,9 +114,6 @@ export function ArticlePage() {
               {content.summary}
             </Typography>
 
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, alignItems: 'center', mb: 2 }}>
-              <PlanBadge plans={article.plans} />
-            </Box>
             <Typography sx={{ fontSize: 12, color: safiTokens.textSecondary, mb: 2 }}>
               {t('article.estReadTime', { minutes: article.estReadMinutes })} · {t('article.lastUpdated', { date: lastUpdated })}
             </Typography>
