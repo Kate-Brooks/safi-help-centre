@@ -2,9 +2,11 @@ import type { ArticleContent } from '../types';
 
 /**
  * English content for "Collecting quality data".
- * Structure follows the approved draft (Google Doc, June 2026):
- * a "Before you begin" alert + three numbered sections.
+ * Structure follows the approved draft + June 2026 screenshot revisions.
  * Section ids are stable across locales so anchor links survive a language switch.
+ *
+ * Screenshots live in /public/screenshots/collecting-quality-data/ and are
+ * referenced by relative path; missing files fall back to a placeholder.
  */
 export const collectingQualityDataEn: ArticleContent = {
   title: 'Collecting quality data',
@@ -77,12 +79,16 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           ],
         },
         {
-          title: 'Set up the camera',
+          title: 'Set-up & open camera',
           blocks: [
             {
               type: 'list',
               ordered: true,
-              items: ['Choose the material form.', 'Turn on Offline mode if signal is weak.'],
+              items: [
+                'Choose the material form.',
+                'Turn on Offline mode if signal is weak.',
+                'Open the camera to start photographing the material.',
+              ],
             },
             {
               type: 'callout',
@@ -93,17 +99,9 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Camera set-up screen showing the material form options and the Offline mode toggle.',
+                alt: 'Camera set-up screen with the material form, Offline mode toggle and Open camera button.',
+                src: 'screenshots/collecting-quality-data/02-set-up.png',
               },
-            },
-          ],
-        },
-        {
-          title: 'Open the camera',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Open the camera to start photographing the material.',
             },
           ],
         },
@@ -127,8 +125,9 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             {
               type: 'media',
               media: {
-                kind: 'gif',
-                alt: 'Camera view guiding the operator to the correct distance and angle before automatically capturing.',
+                kind: 'screenshot',
+                alt: 'Camera guiding the operator to the correct distance and angle to frame the bale.',
+                src: 'screenshots/collecting-quality-data/03-framing.png',
               },
             },
           ],
@@ -141,6 +140,14 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               variant: 'tip',
               body: 'We recommend **Automatic Capture** for a fast, seamless workflow.',
             },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Camera screen with the Automatic and Manual capture toggle.',
+                src: 'screenshots/collecting-quality-data/04-auto-manual.png',
+              },
+            },
           ],
         },
         {
@@ -152,6 +159,14 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
                 'You can review photos here at any time.',
                 'If an issue is detected, a red or yellow indicator appears next to the library button and on the affected photo in the library view.',
               ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Photo library showing the analysed photos with AI status indicators.',
+                src: 'screenshots/collecting-quality-data/05-library.png',
+              },
             },
           ],
         },
@@ -170,6 +185,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               media: {
                 kind: 'screenshot',
                 alt: 'Camera screen with the settings and flash controls in the top-right corner.',
+                src: 'screenshots/collecting-quality-data/06-settings.png',
               },
             },
           ],
@@ -180,16 +196,9 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             {
               type: 'list',
               items: [
-                'Capture at least 10 photos per load — the more photos you take, the more representative the AI results are of the load.',
-                'Avoid photographing the highly compressed side of the bale and focus on the flatter bale faces.',
+                '**Capture at least 10 photos per load** — the more photos you take, the more representative the AI results are of the load.',
+                '**Avoid photographing the highly compressed side of the bale** and focus on the flatter bale faces.',
               ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Diagram of a bale showing the flat faces to photograph and the compressed side to avoid.',
-              },
             },
           ],
         },
@@ -204,7 +213,8 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Completing the report to generate the AI analysis.',
+                alt: 'Completing the analysis to generate the AI report.',
+                src: 'screenshots/collecting-quality-data/07-complete.png',
               },
             },
           ],
@@ -227,19 +237,13 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               media: {
                 kind: 'screenshot',
                 alt: 'Composition table comparing target material specifications against the AI results.',
+                src: 'screenshots/collecting-quality-data/08-composition.png',
               },
             },
             {
               type: 'callout',
               variant: 'important',
               body: 'Photos captured in Offline mode can be uploaded later over Wi-Fi, either from the report page or from the Quality Control home page.',
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Uploading offline photos from the report page over Wi-Fi.',
-              },
             },
           ],
         },
@@ -257,30 +261,15 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               ],
             },
             {
-              type: 'media',
-              media: {
-                kind: 'gif',
-                alt: 'AI Bale album showing the detected material outlines being toggled on and off.',
-              },
+              type: 'paragraph',
+              body: '**Training the AI on your material**',
             },
-          ],
-        },
-        {
-          title: 'Training the AI on your material',
-          blocks: [
             {
               type: 'list',
               items: [
                 'If you notice an issue with the AI, such as the wrong object being detected, press and hold on the photo (on mobile) or right-click it (on desktop) to leave a comment.',
                 'Your comment goes directly to our machine learning team so we can keep improving your site’s data.',
               ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Leaving a comment on a photo to flag an AI detection issue.',
-              },
             },
           ],
         },
@@ -298,7 +287,8 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Uploading device photos for analysis from the report’s photo library.',
+                alt: 'Uploading device photos for analysis from the set-up screen.',
+                src: 'screenshots/collecting-quality-data/09-upload.png',
               },
             },
           ],
@@ -314,7 +304,8 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Sharing a report with colleagues and downloading it as a PDF.',
+                alt: 'Downloading the report as a PDF and sharing it, with the language selector.',
+                src: 'screenshots/collecting-quality-data/10-share.png',
               },
             },
           ],
@@ -331,6 +322,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               media: {
                 kind: 'screenshot',
                 alt: 'Creating a load on arrival and choosing its material specification.',
+                src: 'screenshots/collecting-quality-data/11-create-load.png',
               },
             },
           ],
