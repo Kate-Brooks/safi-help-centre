@@ -77,7 +77,11 @@ export function VideoPlayer({ sources, poster, transcript }: Props) {
         sx={{
           position: 'relative',
           width: '100%',
-          aspectRatio: '16 / 9',
+          // The tutorial videos are square (1:1); matching the container stops
+          // the Drive player stretching them. Capped + centred so it isn't huge.
+          maxWidth: 460,
+          mx: 'auto',
+          aspectRatio: '1 / 1',
           borderRadius: 3,
           overflow: 'hidden',
           bgcolor: '#000',
