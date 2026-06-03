@@ -25,7 +25,16 @@ export interface MediaPlaceholder {
 
 export type ContentBlock =
   | { type: 'paragraph'; body: string }
-  | { type: 'callout'; variant: 'note' | 'tip' | 'important'; body: string }
+  | {
+      type: 'callout';
+      variant: 'note' | 'tip' | 'important';
+      /** Optional bold heading shown above the body inside the callout. */
+      title?: string;
+      /** Body text (optional when only a list is shown). */
+      body?: string;
+      /** Optional bullet list rendered inside the callout. */
+      items?: string[];
+    }
   | { type: 'list'; ordered?: boolean; items: string[] }
   | { type: 'media'; media: MediaPlaceholder };
 
