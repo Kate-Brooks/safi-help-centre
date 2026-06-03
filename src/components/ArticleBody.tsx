@@ -15,7 +15,9 @@ function Block({ block }: { block: ContentBlock }) {
         </Typography>
       );
     case 'callout':
-      return <Callout variant={block.variant} body={block.body} />;
+      return (
+        <Callout variant={block.variant} body={block.body} title={block.title} items={block.items} />
+      );
     case 'list':
       return (
         <Box
@@ -86,7 +88,14 @@ function AlertSection({ section }: { section: ArticleSection }) {
         }}
       >
         <InfoOutlinedIcon sx={{ color: safiTokens.primary, mt: '2px' }} aria-hidden />
-        <Box sx={{ flex: 1, minWidth: 0 }}>
+        <Box
+          sx={{
+            flex: 1,
+            minWidth: 0,
+            // Purple alert copy uses the brand purple (#6347FF).
+            '& p, & li, & strong, & a': { color: safiTokens.primary },
+          }}
+        >
           <Typography
             variant="h6"
             component="h2"
@@ -95,7 +104,7 @@ function AlertSection({ section }: { section: ArticleSection }) {
             {section.heading}
           </Typography>
           {section.intro && (
-            <Typography variant="body1" sx={{ mb: 1.5 }}>
+            <Typography variant="body1" sx={{ mb: 1.5, color: safiTokens.primary }}>
               {section.intro}
             </Typography>
           )}
