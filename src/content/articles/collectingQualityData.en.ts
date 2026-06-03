@@ -44,7 +44,7 @@ You can also upload device photos to be analysed in the set-up steps, or via the
 
 Reports can easily be shared with colleagues and you can download a PDF of the report containing all of the photos and the data.
 
-If your site doesn't import loads into Safi in advance, you can create loads as they arrive at the yard. In Quality, select the create load option. Make sure you choose the correct material specification to give your reports meaningful context — more on that in a separate video.`,
+If your site doesn't import loads into Safi in advance, you can create loads as they arrive at the yard. In Quality, select the create load option. Make sure you choose the correct material specification to give your reports meaningful context - more on that in a separate video.`,
   sections: [
     {
       id: 'before-you-begin',
@@ -136,9 +136,15 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           title: 'Choose automatic or manual capture',
           blocks: [
             {
-              type: 'callout',
-              variant: 'tip',
-              body: 'We recommend **Automatic Capture** for a fast, seamless workflow.',
+              type: 'paragraph',
+              body: 'Once you are holding the device at the correct distance and angle, the bale frame will turn green.',
+            },
+            {
+              type: 'list',
+              items: [
+                'Manual mode gives you control over photo capture.',
+                'Automatic mode captures the photo for you (recommended for a fast and seamless workflow).',
+              ],
             },
             {
               type: 'media',
@@ -156,7 +162,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             {
               type: 'list',
               items: [
-                'You can review photos here at any time.',
+                'You can review photos by clicking the photo library button (bottom-left of the camera screen) anytime.',
                 'If an issue is detected, a red or yellow indicator appears next to the library button and on the affected photo in the library view.',
               ],
             },
@@ -194,9 +200,10 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           title: 'For best coverage',
           blocks: [
             {
-              type: 'list',
+              type: 'callout',
+              variant: 'tip',
               items: [
-                '**Capture at least 10 photos per load** — the more photos you take, the more representative the AI results are of the load.',
+                '**Capture at least 10 photos per load** - the more photos you take, the more representative the AI results are of the load.',
                 '**Avoid photographing the highly compressed side of the bale** and focus on the flatter bale faces.',
               ],
             },
@@ -242,7 +249,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             },
             {
               type: 'callout',
-              variant: 'important',
+              variant: 'tip',
               body: 'Photos captured in Offline mode can be uploaded later over Wi-Fi, either from the report page or from the Quality Control home page.',
             },
           ],
@@ -261,15 +268,10 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               ],
             },
             {
-              type: 'paragraph',
-              body: '**Training the AI on your material**',
-            },
-            {
-              type: 'list',
-              items: [
-                'If you notice an issue with the AI, such as the wrong object being detected, press and hold on the photo (on mobile) or right-click it (on desktop) to leave a comment.',
-                'Your comment goes directly to our machine learning team so we can keep improving your site’s data.',
-              ],
+              type: 'callout',
+              variant: 'tip',
+              title: 'Training the AI on your material',
+              body: 'If you spot an AI issue, such as the wrong object being detected, press and hold the photo on mobile or right-click on desktop to leave a comment. Your feedback is sent directly to our Machine Learning team to help improve accuracy for your site.',
             },
           ],
         },
@@ -279,7 +281,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             {
               type: 'list',
               items: [
-                'Upload photos from your device to be analysed during the set-up steps,',
+                'Upload photos from your device to be analysed during the set-up steps;',
                 'or via the report’s photo library using the upload button.',
               ],
             },
@@ -315,7 +317,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           blocks: [
             {
               type: 'paragraph',
-              body: 'If your site doesn’t import loads into Safi in advance, you can create loads as they arrive at the yard. In **Quality**, select **Create load**. Make sure you choose the correct material specification to give your reports meaningful context — more on that in a separate guide.',
+              body: 'If your site doesn’t import loads into Safi in advance, you can create loads as they arrive at the yard. In **Quality**, select **Create load**. Make sure you choose the correct material specification to give your reports meaningful context - more on that in a separate guide.',
             },
             {
               type: 'media',
