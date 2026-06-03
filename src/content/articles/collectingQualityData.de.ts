@@ -29,7 +29,7 @@ Für möglichst genaue Ergebnisse empfehlen wir, mindestens 10 Fotos pro Ladung 
 
 Sobald Sie mit der Fotoabdeckung zufrieden sind, schließen Sie den Bericht ab, um Ihre KI-Analyse zu erstellen.
 
-Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden – entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.
+Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden - entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.
 
 Nach der Analyse der Fotos sehen Sie die Zusammensetzungstabelle, in der die in den Einstellungen festgelegten Materialspezifikationen mit den tatsächlichen Ergebnissen der KI verglichen werden.
 
@@ -37,11 +37,11 @@ Um die von der KI analysierten Fotos durchzusehen, öffnen Sie den Bericht und g
 
 Wenn Ihnen ein Problem mit der KI auffällt, etwa dass das falsche Objekt erkannt wurde, halten Sie das Foto gedrückt und hinterlassen Sie einen Kommentar. Dieser geht direkt an unser Machine-Learning-Team, damit wir die Daten Ihres Standorts weiter verbessern können.
 
-Sie können auch Gerätefotos zur Analyse hochladen – in den Einrichtungsschritten oder über die Fotobibliothek des Berichts mit der Schaltfläche zum Hochladen.
+Sie können auch Gerätefotos zur Analyse hochladen - in den Einrichtungsschritten oder über die Fotobibliothek des Berichts mit der Schaltfläche zum Hochladen.
 
 Berichte lassen sich einfach mit Kolleginnen und Kollegen teilen, und Sie können ein PDF des Berichts mit allen Fotos und Daten herunterladen.
 
-Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter „Qualität" die Option zum Anlegen einer Ladung. Achten Sie darauf, die richtige Materialspezifikation zu wählen, um Ihren Berichten einen sinnvollen Kontext zu geben – mehr dazu in einem separaten Video.`,
+Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter „Qualität" die Option zum Anlegen einer Ladung. Achten Sie darauf, die richtige Materialspezifikation zu wählen, um Ihren Berichten einen sinnvollen Kontext zu geben - mehr dazu in einem separaten Video.`,
   sections: [
     {
       id: 'before-you-begin',
@@ -90,7 +90,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'callout',
               variant: 'tip',
-              body: 'Im Offline-Modus werden Fotos sicher auf Ihrem Telefon gespeichert und können später über WLAN hochgeladen werden – so müssen Sie sich keine Sorgen machen, Fotos zu verlieren.',
+              body: 'Im Offline-Modus werden Fotos sicher auf Ihrem Telefon gespeichert und können später über WLAN hochgeladen werden - so müssen Sie sich keine Sorgen machen, Fotos zu verlieren.',
             },
             {
               type: 'media',
@@ -133,9 +133,15 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           title: 'Automatische oder manuelle Aufnahme wählen',
           blocks: [
             {
-              type: 'callout',
-              variant: 'tip',
-              body: 'Wir empfehlen die **automatische Aufnahme** für einen schnellen, nahtlosen Arbeitsablauf.',
+              type: 'paragraph',
+              body: 'Sobald Sie das Gerät im richtigen Abstand und Winkel halten, wird der Ballenrahmen grün.',
+            },
+            {
+              type: 'list',
+              items: [
+                'Im manuellen Modus haben Sie die Kontrolle über die Fotoaufnahme.',
+                'Im automatischen Modus wird das Foto für Sie aufgenommen (empfohlen für einen schnellen und nahtlosen Arbeitsablauf).',
+              ],
             },
             {
               type: 'media',
@@ -153,7 +159,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'list',
               items: [
-                'Sie können die Fotos hier jederzeit überprüfen.',
+                'Sie können die Fotos jederzeit überprüfen, indem Sie unten links im Kamerabildschirm auf die Schaltfläche der Fotobibliothek tippen.',
                 'Wird ein Problem erkannt, erscheint neben der Bibliotheksschaltfläche und beim betroffenen Foto in der Bibliotheksansicht ein rotes oder gelbes Symbol.',
               ],
             },
@@ -191,9 +197,10 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           title: 'Für die beste Abdeckung',
           blocks: [
             {
-              type: 'list',
+              type: 'callout',
+              variant: 'tip',
               items: [
-                '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** – je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
+                '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** - je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
                 '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',
               ],
             },
@@ -239,8 +246,8 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             },
             {
               type: 'callout',
-              variant: 'important',
-              body: 'Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden – entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.',
+              variant: 'tip',
+              body: 'Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden - entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.',
             },
           ],
         },
@@ -258,15 +265,10 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               ],
             },
             {
-              type: 'paragraph',
-              body: '**Die KI auf Ihr Material trainieren**',
-            },
-            {
-              type: 'list',
-              items: [
-                'Wenn Ihnen ein Problem mit der KI auffällt, etwa dass das falsche Objekt erkannt wurde, halten Sie das Foto gedrückt (auf dem Mobilgerät) oder klicken Sie mit der rechten Maustaste darauf (am Desktop), um einen Kommentar zu hinterlassen.',
-                'Ihr Kommentar geht direkt an unser Machine-Learning-Team, damit wir die Daten Ihres Standorts weiter verbessern können.',
-              ],
+              type: 'callout',
+              variant: 'tip',
+              title: 'Die KI auf Ihr Material trainieren',
+              body: 'Wenn Ihnen ein KI-Problem auffällt, etwa dass das falsche Objekt erkannt wurde, halten Sie das Foto auf dem Mobilgerät gedrückt oder klicken Sie am Desktop mit der rechten Maustaste, um einen Kommentar zu hinterlassen. Ihr Feedback geht direkt an unser Machine-Learning-Team, um die Genauigkeit für Ihren Standort zu verbessern.',
             },
           ],
         },
@@ -276,7 +278,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'list',
               items: [
-                'Laden Sie Fotos von Ihrem Gerät zur Analyse während der Einrichtungsschritte hoch,',
+                'Laden Sie Fotos von Ihrem Gerät zur Analyse während der Einrichtungsschritte hoch;',
                 'oder über die Fotobibliothek des Berichts mit der Schaltfläche zum Hochladen.',
               ],
             },
@@ -312,7 +314,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           blocks: [
             {
               type: 'paragraph',
-              body: 'Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter **Qualität** die Option **Ladung anlegen**. Achten Sie darauf, die richtige Materialspezifikation zu wählen, um Ihren Berichten einen sinnvollen Kontext zu geben – mehr dazu in einer separaten Anleitung.',
+              body: 'Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladungen anlegen, sobald sie auf dem Hof eintreffen. Wählen Sie unter **Qualität** die Option **Ladung anlegen**. Achten Sie darauf, die richtige Materialspezifikation zu wählen, um Ihren Berichten einen sinnvollen Kontext zu geben - mehr dazu in einer separaten Anleitung.',
             },
             {
               type: 'media',
