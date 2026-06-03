@@ -2,7 +2,8 @@ import type { ArticleContent } from '../types';
 
 /**
  * German content for "Collecting quality data" / „Qualitätsdaten erfassen".
- * Mirrors the English structure (same section ids, same screenshot slots).
+ * Mirrors the English structure (same section ids, same step order, same
+ * screenshot files). Swap the `src` paths for German-UI captures when available.
  */
 export const collectingQualityDataDe: ArticleContent = {
   title: 'Qualitätsdaten erfassen',
@@ -69,17 +70,22 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               media: {
                 kind: 'screenshot',
                 alt: 'Ladungsliste der Qualitätskontrolle mit der Aktion „Jetzt analysieren" bei einer Ladung.',
+                src: 'screenshots/collecting-quality-data/01-analyse.png',
               },
             },
           ],
         },
         {
-          title: 'Kamera einrichten',
+          title: 'Einrichten & Kamera öffnen',
           blocks: [
             {
               type: 'list',
               ordered: true,
-              items: ['Wählen Sie die Materialform.', 'Aktivieren Sie den Offline-Modus bei schwachem Signal.'],
+              items: [
+                'Wählen Sie die Materialform.',
+                'Aktivieren Sie den Offline-Modus bei schwachem Signal.',
+                'Öffnen Sie die Kamera, um mit dem Fotografieren des Materials zu beginnen.',
+              ],
             },
             {
               type: 'callout',
@@ -90,17 +96,9 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Einrichtungsbildschirm der Kamera mit den Materialform-Optionen und dem Offline-Modus-Schalter.',
+                alt: 'Einrichtungsbildschirm der Kamera mit Materialform, Offline-Modus-Schalter und Schaltfläche „Kamera öffnen".',
+                src: 'screenshots/collecting-quality-data/02-set-up.png',
               },
-            },
-          ],
-        },
-        {
-          title: 'Kamera öffnen',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Öffnen Sie die Kamera, um mit dem Fotografieren des Materials zu beginnen.',
             },
           ],
         },
@@ -124,8 +122,9 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'media',
               media: {
-                kind: 'gif',
-                alt: 'Kameraansicht, die den Bediener vor der automatischen Aufnahme zum richtigen Abstand und Winkel führt.',
+                kind: 'screenshot',
+                alt: 'Kamera, die den Bediener zum richtigen Abstand und Winkel führt, um den Ballen ins Bild zu rücken.',
+                src: 'screenshots/collecting-quality-data/03-framing.png',
               },
             },
           ],
@@ -138,6 +137,14 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               variant: 'tip',
               body: 'Wir empfehlen die **automatische Aufnahme** für einen schnellen, nahtlosen Arbeitsablauf.',
             },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Kamerabildschirm mit dem Umschalter zwischen automatischer und manueller Aufnahme.',
+                src: 'screenshots/collecting-quality-data/04-auto-manual.png',
+              },
+            },
           ],
         },
         {
@@ -149,6 +156,14 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
                 'Sie können die Fotos hier jederzeit überprüfen.',
                 'Wird ein Problem erkannt, erscheint neben der Bibliotheksschaltfläche und beim betroffenen Foto in der Bibliotheksansicht ein rotes oder gelbes Symbol.',
               ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Fotobibliothek mit den analysierten Fotos und KI-Statussymbolen.',
+                src: 'screenshots/collecting-quality-data/05-library.png',
+              },
             },
           ],
         },
@@ -167,6 +182,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               media: {
                 kind: 'screenshot',
                 alt: 'Kamerabildschirm mit den Einstellungen und dem Blitz oben rechts.',
+                src: 'screenshots/collecting-quality-data/06-settings.png',
               },
             },
           ],
@@ -177,16 +193,9 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'list',
               items: [
-                'Nehmen Sie mindestens 10 Fotos pro Ladung auf – je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
-                'Vermeiden Sie die stark verdichtete Seite des Ballens und konzentrieren Sie sich auf die flacheren Ballenflächen.',
+                '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** – je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
+                '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',
               ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Diagramm eines Ballens, das die zu fotografierenden flachen Flächen und die zu vermeidende verdichtete Seite zeigt.',
-              },
             },
           ],
         },
@@ -201,7 +210,8 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Abschließen des Berichts zur Erstellung der KI-Analyse.',
+                alt: 'Abschließen der Analyse zur Erstellung des KI-Berichts.',
+                src: 'screenshots/collecting-quality-data/07-complete.png',
               },
             },
           ],
@@ -224,19 +234,13 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               media: {
                 kind: 'screenshot',
                 alt: 'Zusammensetzungstabelle, die Ziel-Materialspezifikationen mit den KI-Ergebnissen vergleicht.',
+                src: 'screenshots/collecting-quality-data/08-composition.png',
               },
             },
             {
               type: 'callout',
               variant: 'important',
               body: 'Im Offline-Modus aufgenommene Fotos können später über WLAN hochgeladen werden – entweder von der Berichtsseite oder von der Startseite der Qualitätskontrolle.',
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Hochladen von Offline-Fotos von der Berichtsseite über WLAN.',
-              },
             },
           ],
         },
@@ -254,30 +258,15 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               ],
             },
             {
-              type: 'media',
-              media: {
-                kind: 'gif',
-                alt: 'Album „KI-Ballen", das die erkannten Materialumrisse beim Ein- und Ausblenden zeigt.',
-              },
+              type: 'paragraph',
+              body: '**Die KI auf Ihr Material trainieren**',
             },
-          ],
-        },
-        {
-          title: 'Die KI auf Ihr Material trainieren',
-          blocks: [
             {
               type: 'list',
               items: [
                 'Wenn Ihnen ein Problem mit der KI auffällt, etwa dass das falsche Objekt erkannt wurde, halten Sie das Foto gedrückt (auf dem Mobilgerät) oder klicken Sie mit der rechten Maustaste darauf (am Desktop), um einen Kommentar zu hinterlassen.',
                 'Ihr Kommentar geht direkt an unser Machine-Learning-Team, damit wir die Daten Ihres Standorts weiter verbessern können.',
               ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Hinterlassen eines Kommentars zu einem Foto, um ein KI-Erkennungsproblem zu melden.',
-              },
             },
           ],
         },
@@ -295,7 +284,8 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Hochladen von Gerätefotos zur Analyse über die Fotobibliothek des Berichts.',
+                alt: 'Hochladen von Gerätefotos zur Analyse vom Einrichtungsbildschirm aus.',
+                src: 'screenshots/collecting-quality-data/09-upload.png',
               },
             },
           ],
@@ -311,7 +301,8 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               type: 'media',
               media: {
                 kind: 'screenshot',
-                alt: 'Teilen eines Berichts mit Kolleginnen und Kollegen und Herunterladen als PDF.',
+                alt: 'Herunterladen des Berichts als PDF und Teilen, mit der Sprachauswahl.',
+                src: 'screenshots/collecting-quality-data/10-share.png',
               },
             },
           ],
@@ -328,6 +319,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               media: {
                 kind: 'screenshot',
                 alt: 'Anlegen einer Ladung bei Ankunft und Auswahl ihrer Materialspezifikation.',
+                src: 'screenshots/collecting-quality-data/11-create-load.png',
               },
             },
           ],
