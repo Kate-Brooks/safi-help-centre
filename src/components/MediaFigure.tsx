@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Box, Typography } from '@mui/material';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import GifBoxOutlinedIcon from '@mui/icons-material/GifBoxOutlined';
@@ -6,22 +7,37 @@ import type { MediaPlaceholder } from '../content/types';
 import { safiTokens } from '../theme';
 
 /**
- * Renders article media. When a real `src` exists it shows the image; otherwise
- * it renders an accessible, correctly-sized placeholder for engineers to swap
- * out. Alt text is always carried through for WCAG.
+ * Renders article media. When a real `src` is set and the image loads, it shows
+ * the image; otherwise (no src yet, or the file isn't in the repo) it renders an
+ * accessible, correctly-sized placeholder so the layout never breaks. Alt text
+ * is always carried through for WCAG.
  */
 export function MediaFigure({ media }: { media: MediaPlaceholder }) {
   const { t } = useTranslation();
+  const [imgError, setImgError] = useState(false);
   const aspect = media.aspect ?? 16 / 9;
   const Icon = media.kind === 'gif' ? GifBoxOutlinedIcon : ImageOutlinedIcon;
 
+  // Resolve repo-hosted images against the app base path so they load both
+  // locally ('/') and on GitHub Pages ('/<repo>/'). External URLs pass through.
+  // (Cast avoids needing a separate vite/client types file.)
+  const baseUrl =
+    (import.meta as unknown as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/';
+  const resolvedSrc =
+    media.src && !/^https?:\/\//.test(media.src)
+      ? `${baseUrl}${media.src.replace(/^\//, '')}`
+      : media.src;
+
+  const showImage = Boolean(media.src) && !imgError;
+
   return (
     <Box component="figure" sx={{ m: 0, my: 2.5 }}>
-      {media.src ? (
+      {showImage ? (
         <Box
           component="img"
-          src={media.src}
+          src={resolvedSrc}
           alt={media.alt}
+          onError={() => setImgError(true)}
           sx={{ width: '100%', borderRadius: 2, border: `1px solid ${safiTokens.divider}`, display: 'block' }}
         />
       ) : (
