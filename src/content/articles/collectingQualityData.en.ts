@@ -71,6 +71,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               media: {
                 kind: 'screenshot',
                 alt: 'Quality Control load list with the Analyse now action on a load.',
+                src: 'screenshots/collecting-quality-data/01-analyse.png',
               },
             },
           ],
