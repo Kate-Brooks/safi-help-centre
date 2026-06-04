@@ -71,17 +71,126 @@ export function ArticlePage() {
     setPreparingPdf(true);
     try {
       const { default: html2pdf } = await import('html2pdf.js');
-      await html2pdf()
-        .set({
-          margin: [12, 12, 16, 12],
-          filename: `${article.slug}-${lang}.pdf`,
-          image: { type: 'jpeg', quality: 0.95 },
-          html2canvas: { scale: 2, useCORS: true },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-          pagebreak: { mode: ['css', 'legacy'] },
-        })
-        .from(printRef.current)
-        .save();
+
+      // Safi logo (the real brand asset in /public) for the PDF page header.
+      const baseUrl =
+        (import.meta as unknown as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/';
+      const logoSrc = `${baseUrl}${encodeURI('_safi_final_logo_black (1).png')}`;
+      const logo = await new Promise<{ data: string; w: number; h: number } | null>((resolve) => {
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.onload = () => {
+          try {
+            const c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            const ctx = c.getContext('2d');
+            if (!ctx) return resolve(null);
+            ctx.drawImage(img, 0, 0);
+            resolve({ data: c.toDataURL('image/png'), w: img.naturalWidth, h: img.naturalHeight });
+          } catch {
+            resolve(null); // cross-origin taint (e.g. in the standalone preview)
+          }
+        };
+        img.onerror = () => resolve(null);
+        img.src = logoSrc;
+      });
+
+      // Small logo, top-left, with ~20px (≈5.3mm) of padding before the content.
+      const logoX = 14;
+      const logoY = 8;
+      const logoW = 22; // mm
+      const logoH = logo ? logoW * (logo.h / logo.w) : 0;
+      const topMargin = logo ? logoY + logoH + 5.3 : 14;
+
+      // Work on a detached clone so the on-screen article is untouched.
+      const clone = printRef.current.cloneNode(true) as HTMLElement;
+
+      // Drop the video + "show transcript" from the PDF.
+      clone.querySelectorAll('.pdf-exclude').forEach((el) => el.remove());
+
+      // Links: keep bold, remove link colour + underline.
+      clone.querySelectorAll('a').forEach((a) => {
+        const el = a as HTMLElement;
+        el.style.color = 'inherit';
+        el.style.textDecoration = 'none';
+        el.style.fontWeight = '700';
+      });
+
+      // Screenshots: smaller, centred, and never split across a page break.
+      clone.querySelectorAll('figure').forEach((f) => {
+        const el = f as HTMLElement;
+        el.style.breakInside = 'avoid';
+        el.style.pageBreakInside = 'avoid';
+        el.style.textAlign = 'center';
+      });
+      clone.querySelectorAll('img').forEach((img) => {
+        const el = img as HTMLImageElement;
+        el.style.maxWidth = '320px';
+        el.style.maxHeight = '560px';
+        el.style.width = 'auto';
+        el.style.height = 'auto';
+        el.style.objectFit = 'contain';
+        el.style.margin = '0 auto';
+        el.style.display = 'block';
+      });
+
+      // Alerts / callouts: never split across a page break.
+      clone.querySelectorAll('[role="note"]').forEach((n) => {
+        const el = n as HTMLElement;
+        el.style.breakInside = 'avoid';
+        el.style.pageBreakInside = 'avoid';
+      });
+
+      // Each major section starts on a fresh page, so a subheading like
+      // "Read your results" is never stranded at the foot of the previous page.
+      clone.querySelectorAll('section').forEach((s, i) => {
+        if (i > 0) {
+          const el = s as HTMLElement;
+          el.style.breakBefore = 'page';
+          el.style.pageBreakBefore = 'always';
+        }
+      });
+
+      // Render off-screen at a fixed width for consistent layout.
+      clone.style.width = '720px';
+      const holder = document.createElement('div');
+      holder.style.position = 'fixed';
+      holder.style.left = '-10000px';
+      holder.style.top = '0';
+      holder.appendChild(clone);
+      document.body.appendChild(holder);
+
+      try {
+        await html2pdf()
+          .set({
+            margin: [topMargin, 14, 18, 14],
+            filename: `${article.slug}-${lang}.pdf`,
+            image: { type: 'jpeg', quality: 0.95 },
+            html2canvas: { scale: 2, useCORS: true },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+            pagebreak: { mode: ['css', 'legacy'] },
+          })
+          .from(clone)
+          .toPdf()
+          .get('pdf')
+          .then((pdf: { internal: { getNumberOfPages: () => number; pageSize: { getWidth: () => number; getHeight: () => number } }; setPage: (n: number) => void; setFontSize: (n: number) => void; setTextColor: (r: number, g: number, b: number) => void; text: (s: string, x: number, y: number, o?: object) => void; addImage: (d: string, f: string, x: number, y: number, w: number, h: number) => void }) => {
+            // Safi logo header + page numbers on every page.
+            const total = pdf.internal.getNumberOfPages();
+            const w = pdf.internal.pageSize.getWidth();
+            const h = pdf.internal.pageSize.getHeight();
+            for (let i = 1; i <= total; i++) {
+              pdf.setPage(i);
+              if (logo) pdf.addImage(logo.data, 'PNG', logoX, logoY, logoW, logoH);
+              pdf.setFontSize(9);
+              pdf.setTextColor(110, 109, 119);
+              pdf.text(`${i} / ${total}`, w - 14, h - 8, { align: 'right' });
+            }
+          })
+          .save();
+      } finally {
+        document.body.removeChild(holder);
+      }
     } finally {
       setPreparingPdf(false);
     }
@@ -128,7 +237,13 @@ export function ArticlePage() {
 
             {/* Tutorial video + transcript at the top */}
             {article.video && (
-              <VideoPlayer sources={article.video.sources} poster={article.video.poster} transcript={content.transcript} />
+              <div className="pdf-exclude">
+                <VideoPlayer
+                  sources={article.video.sources}
+                  poster={article.video.poster}
+                  transcript={content.transcript}
+                />
+              </div>
             )}
 
             {/* Step-by-step guide */}
