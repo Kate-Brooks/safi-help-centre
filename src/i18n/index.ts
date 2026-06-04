@@ -5,6 +5,7 @@ import { de } from './locales/de';
 import { es } from './locales/es';
 import { sr } from './locales/sr';
 import { it } from './locales/it';
+import { pl } from './locales/pl';
 
 /**
  * The five languages Safi supports in-app (see app Settings > Language):
@@ -21,6 +22,7 @@ export const SUPPORTED_LANGUAGES = [
   { code: 'de', label: 'Deutsch' },
   { code: 'sr', label: 'Srpski' },
   { code: 'it', label: 'Italiano' },
+  { code: 'pl', label: 'Polski' },
 ] as const;
 
 export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number]['code'];
@@ -41,6 +43,7 @@ void i18n.use(initReactI18next).init({
     es: { ui: es },
     sr: { ui: sr },
     it: { ui: it },
+    pl: { ui: pl },
   },
   lng: initialLanguage(),
   fallbackLng: 'en',
