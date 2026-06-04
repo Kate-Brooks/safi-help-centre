@@ -239,20 +239,20 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
               body: 'Po przeanalizowaniu zdjęć zobaczysz **tabelę składu** porównującą **specyfikacje materiałowe** ustawione w Ustawieniach z rzeczywistymi wynikami AI.',
             },
             {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Tabela składu porównująca docelowe specyfikacje materiałowe z wynikami AI.',
-                src: 'screenshots/collecting-quality-data/08-composition.png',
-              },
-            },
-            {
               type: 'list',
               ordered: true,
               items: [
                 'Aby przejrzeć zdjęcia zrobione podczas sesji, przejdź do **karty Zdjęcia** i wybierz album AI.',
                 'Przeanalizowany obszar i **materiały wykryte przez AI** są pokazane dla każdego zdjęcia; możesz je włączać i wyłączać.',
               ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Tabela składu porównująca docelowe specyfikacje materiałowe z wynikami AI.',
+                src: 'screenshots/collecting-quality-data/08-composition.png',
+              },
             },
             {
               type: 'callout',

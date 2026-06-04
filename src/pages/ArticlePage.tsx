@@ -70,7 +70,15 @@ export function ArticlePage() {
     if (!printRef.current) return;
     setPreparingPdf(true);
     try {
-      const { default: html2pdf } = await import('html2pdf.js');
+      // Render the article block-by-block: each step / screenshot / callout is
+      // captured as one image and placed whole, so nothing is ever split across
+      // a page, content flows continuously (no wasted pages) and everything
+      // stays inside the page margins (no horizontal cut-off).
+      const [{ jsPDF }, html2canvasMod] = await Promise.all([
+        import('jspdf'),
+        import('html2canvas'),
+      ]);
+      const html2canvas = html2canvasMod.default;
 
       // Safi logo (the real brand asset in /public) for the PDF page header.
       const baseUrl =
@@ -96,98 +104,109 @@ export function ArticlePage() {
         img.src = logoSrc;
       });
 
-      // Small logo, top-left, with ~20px (≈5.3mm) of padding before the content.
-      const logoX = 14;
-      const logoY = 8;
-      const logoW = 22; // mm
-      const logoH = logo ? logoW * (logo.h / logo.w) : 0;
-      const topMargin = logo ? logoY + logoH + 5.3 : 14;
-
-      // Work on a detached clone so the on-screen article is untouched.
+      // Detached clone at a fixed render width so layout is consistent.
+      const RENDER_W = 760;
       const clone = printRef.current.cloneNode(true) as HTMLElement;
-
-      // Drop the video + "show transcript" from the PDF.
       clone.querySelectorAll('.pdf-exclude').forEach((el) => el.remove());
-
-      // Links: keep bold, remove link colour + underline.
       clone.querySelectorAll('a').forEach((a) => {
         const el = a as HTMLElement;
         el.style.color = 'inherit';
         el.style.textDecoration = 'none';
         el.style.fontWeight = '700';
       });
-
-      // Screenshots: smaller, centred, and never split across a page break.
-      clone.querySelectorAll('figure').forEach((f) => {
-        const el = f as HTMLElement;
-        el.style.breakInside = 'avoid';
-        el.style.pageBreakInside = 'avoid';
-        el.style.textAlign = 'center';
-      });
+      // Cap screenshot size so any single figure comfortably fits one page.
       clone.querySelectorAll('img').forEach((img) => {
         const el = img as HTMLImageElement;
-        el.style.maxWidth = '320px';
-        el.style.maxHeight = '560px';
+        el.style.maxWidth = '100%';
+        el.style.maxHeight = '780px';
         el.style.width = 'auto';
         el.style.height = 'auto';
         el.style.objectFit = 'contain';
-        el.style.margin = '0 auto';
         el.style.display = 'block';
+        el.style.margin = '0 auto';
       });
 
-      // Alerts / callouts: never split across a page break.
-      clone.querySelectorAll('[role="note"]').forEach((n) => {
-        const el = n as HTMLElement;
-        el.style.breakInside = 'avoid';
-        el.style.pageBreakInside = 'avoid';
-      });
-
-      // Each major section starts on a fresh page, so a subheading like
-      // "Read your results" is never stranded at the foot of the previous page.
-      clone.querySelectorAll('section').forEach((s, i) => {
-        if (i > 0) {
-          const el = s as HTMLElement;
-          el.style.breakBefore = 'page';
-          el.style.pageBreakBefore = 'always';
-        }
-      });
-
-      // Render off-screen at a fixed width for consistent layout.
-      clone.style.width = '720px';
       const holder = document.createElement('div');
-      holder.style.position = 'fixed';
-      holder.style.left = '-10000px';
-      holder.style.top = '0';
+      holder.style.cssText = `position:fixed;left:-10000px;top:0;width:${RENDER_W}px;background:#ffffff;`;
       holder.appendChild(clone);
       document.body.appendChild(holder);
 
       try {
-        await html2pdf()
-          .set({
-            margin: [topMargin, 14, 18, 14],
-            filename: `${article.slug}-${lang}.pdf`,
-            image: { type: 'jpeg', quality: 0.95 },
-            html2canvas: { scale: 2, useCORS: true },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-            pagebreak: { mode: ['css', 'legacy'] },
-          })
-          .from(clone)
-          .toPdf()
-          .get('pdf')
-          .then((pdf: { internal: { getNumberOfPages: () => number; pageSize: { getWidth: () => number; getHeight: () => number } }; setPage: (n: number) => void; setFontSize: (n: number) => void; setTextColor: (r: number, g: number, b: number) => void; text: (s: string, x: number, y: number, o?: object) => void; addImage: (d: string, f: string, x: number, y: number, w: number, h: number) => void }) => {
-            // Safi logo header + page numbers on every page.
-            const total = pdf.internal.getNumberOfPages();
-            const w = pdf.internal.pageSize.getWidth();
-            const h = pdf.internal.pageSize.getHeight();
-            for (let i = 1; i <= total; i++) {
-              pdf.setPage(i);
-              if (logo) pdf.addImage(logo.data, 'PNG', logoX, logoY, logoW, logoH);
-              pdf.setFontSize(9);
-              pdf.setTextColor(110, 109, 119);
-              pdf.text(`${i} / ${total}`, w - 14, h - 8, { align: 'right' });
-            }
-          })
-          .save();
+        // Collect atomic units (never split) in document order.
+        const units: HTMLElement[] = [];
+        Array.from(clone.children).forEach((child) => {
+          const el = child as HTMLElement;
+          if (el.tagName === 'HR') return; // drop dividers
+          if (el.querySelector('section')) {
+            // The ArticleBody container: descend into each <section>.
+            el.querySelectorAll(':scope > section').forEach((sec) => {
+              const section = sec as HTMLElement;
+              if (section.querySelector(':scope > [role="note"]')) {
+                units.push(section); // alert section (e.g. "Before you begin")
+              } else {
+                // Section heading, then each numbered step, as separate units.
+                Array.from(section.children).forEach((c) => units.push(c as HTMLElement));
+              }
+            });
+          } else {
+            units.push(el); // title, summary, meta, fallback alert
+          }
+        });
+
+        const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+        const pageW = pdf.internal.pageSize.getWidth();
+        const pageH = pdf.internal.pageSize.getHeight();
+        const marginX = 14;
+        const contentW = pageW - marginX * 2;
+        const logoX = 14;
+        const logoY = 8;
+        const logoW = 22; // mm
+        const logoH = logo ? logoW * (logo.h / logo.w) : 0;
+        const topMargin = logo ? logoY + logoH + 5.3 : 14; // ~20px below the logo
+        const bottomMargin = 16;
+        const maxH = pageH - topMargin - bottomMargin;
+        let y = topMargin;
+
+        for (const unit of units) {
+          const canvas = await html2canvas(unit, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            useCORS: true,
+            windowWidth: RENDER_W,
+          });
+          if (!canvas.width || !canvas.height) continue;
+
+          let w = contentW;
+          let h = (canvas.height * contentW) / canvas.width;
+          if (h > maxH) {
+            // Oversized unit: shrink to fit a single page rather than split it.
+            h = maxH;
+            w = (canvas.width * maxH) / canvas.height;
+          }
+
+          // Extra breathing room above section headings.
+          if (unit.tagName === 'H2' && y > topMargin) y += 4;
+
+          if (y + h > pageH - bottomMargin) {
+            pdf.addPage();
+            y = topMargin;
+          }
+          const x = marginX + (contentW - w) / 2; // centre when shrunk
+          pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', x, y, w, h);
+          y += h + 3; // small gap between units
+        }
+
+        // Safi logo header + page numbers on every page.
+        const total = pdf.getNumberOfPages();
+        for (let i = 1; i <= total; i++) {
+          pdf.setPage(i);
+          if (logo) pdf.addImage(logo.data, 'PNG', logoX, logoY, logoW, logoH);
+          pdf.setFontSize(9);
+          pdf.setTextColor(110, 109, 119);
+          pdf.text(`${i} / ${total}`, pageW - 14, pageH - 8, { align: 'right' });
+        }
+
+        pdf.save(`${article.slug}-${lang}.pdf`);
       } finally {
         document.body.removeChild(holder);
       }

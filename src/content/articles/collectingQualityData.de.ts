@@ -239,20 +239,20 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               body: 'Nach der Analyse der Fotos sehen Sie die **Zusammensetzungstabelle**, in der die in den Einstellungen festgelegten **Materialspezifikationen** mit den tatsächlichen Ergebnissen der KI verglichen werden.',
             },
             {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Zusammensetzungstabelle, die Ziel-Materialspezifikationen mit den KI-Ergebnissen vergleicht.',
-                src: 'screenshots/collecting-quality-data/08-composition.png',
-              },
-            },
-            {
               type: 'list',
               ordered: true,
               items: [
                 'Um die während der Sitzung aufgenommenen Fotos zu überprüfen, gehen Sie zum **Tab „Fotos"** und wählen Sie das KI-Album.',
                 'Der analysierte Bereich und die **von der KI erkannten Materialien** werden für jedes Foto angezeigt und können ein- und ausgeblendet werden.',
               ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Zusammensetzungstabelle, die Ziel-Materialspezifikationen mit den KI-Ergebnissen vergleicht.',
+                src: 'screenshots/collecting-quality-data/08-composition.png',
+              },
             },
             {
               type: 'callout',

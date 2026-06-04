@@ -243,20 +243,20 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
               body: 'Once the photos have been analysed, you’ll see the **composition table** comparing the **material specifications** set up in Settings against the actual results of the AI.',
             },
             {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Composition table comparing target material specifications against the AI results.',
-                src: 'screenshots/collecting-quality-data/08-composition.png',
-              },
-            },
-            {
               type: 'list',
               ordered: true,
               items: [
                 'To review the photos taken during the session, go to the **Photos tab** and select the AI album.',
                 'The analysed area and **materials detected by the AI** are shown for each photo, which you can toggle on and off.',
               ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Composition table comparing target material specifications against the AI results.',
+                src: 'screenshots/collecting-quality-data/08-composition.png',
+              },
             },
             {
               type: 'callout',
