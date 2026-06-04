@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Box, Button, Collapse, Typography } from '@mui/material';
+import { Box, Button, Collapse, Dialog, IconButton, Typography } from '@mui/material';
 import SubtitlesOutlinedIcon from '@mui/icons-material/SubtitlesOutlined';
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PlayArrowRoundedIcon from '@mui/icons-material/PlayArrowRounded';
+import CloseIcon from '@mui/icons-material/Close';
+import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
 import { useTranslation } from 'react-i18next';
 import type { VideoSource } from '../content/types';
 import { safiTokens } from '../theme';
@@ -13,25 +15,23 @@ interface Props {
   transcript: string;
 }
 
-/**
- * Converts a normal YouTube/Vimeo URL into an embeddable iframe URL.
- * Returns null if the value is a direct video file (mp4) rather than a hosted link.
- *
- * Accepts: youtube.com/watch?v=ID, youtu.be/ID, youtube.com/embed/ID,
- *          vimeo.com/ID, player.vimeo.com/video/ID,
- *          drive.google.com/file/d/ID/view, drive.google.com/open?id=ID
- *
- * Note: Google Drive files must be shared "Anyone with the link – Viewer" for
- * the embed to play on a public site.
- */
+/** Extracts a Google Drive file id from a share/preview URL. */
+function driveId(src: string): string | null {
+  const m = src.match(/\/file\/d\/([^/]+)/);
+  if (m) return m[1];
+  try {
+    return new URL(src, window.location.origin).searchParams.get('id');
+  } catch {
+    return null;
+  }
+}
+
+/** Embeddable iframe URL for the lightbox player (YouTube / Vimeo / Drive / direct mp4). */
 function toEmbedUrl(src: string): string | null {
   try {
     const url = new URL(src, window.location.origin);
     const host = url.hostname.replace(/^www\./, '');
-
-    if (host === 'youtu.be') {
-      return `https://www.youtube.com/embed${url.pathname}`;
-    }
+    if (host === 'youtu.be') return `https://www.youtube.com/embed${url.pathname}`;
     if (host.endsWith('youtube.com')) {
       if (url.pathname.startsWith('/embed/')) return url.href;
       const id = url.searchParams.get('v');
@@ -43,96 +43,84 @@ function toEmbedUrl(src: string): string | null {
       if (id && /^\d+$/.test(id)) return `https://player.vimeo.com/video/${id}`;
     }
     if (host.endsWith('drive.google.com')) {
-      const match = url.pathname.match(/\/file\/d\/([^/]+)/);
-      const id = match ? match[1] : url.searchParams.get('id');
+      const id = driveId(src);
       if (id) return `https://drive.google.com/file/d/${id}/preview`;
     }
-    return null; // not a recognised hosted link → treat as a direct file
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/** A full-width poster frame to show before play (no stretch — it's a plain image). */
+function toPosterUrl(src: string, poster?: string): string | null {
+  if (poster) return poster;
+  try {
+    const url = new URL(src, window.location.origin);
+    const host = url.hostname.replace(/^www\./, '');
+    if (host.endsWith('drive.google.com')) {
+      const id = driveId(src);
+      if (id) return `https://drive.google.com/thumbnail?id=${id}&sz=w1600`;
+    }
+    if (host === 'youtu.be') return `https://img.youtube.com/vi${url.pathname}/hqdefault.jpg`;
+    if (host.endsWith('youtube.com')) {
+      const id = url.searchParams.get('v');
+      if (id) return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+    }
+    return null;
   } catch {
     return null;
   }
 }
 
 /**
- * Tutorial video with a language-matched source and an always-available
- * transcript (WCAG 1.2 — supports deaf and hard-of-hearing users).
- *
- * A source's `src` can be either a hosted link (YouTube/Vimeo — rendered as an
- * embed) or a direct video file path (rendered with the native player + an
- * optional WebVTT captions track).
+ * Tutorial video. The poster is shown full-width (the image sets the size, so it
+ * never stretches); pressing play opens the video at its true aspect ratio in a
+ * centred lightbox. The transcript stays available below for accessibility
+ * (WCAG 1.2 — deaf and hard-of-hearing users).
  */
 export function VideoPlayer({ sources, poster, transcript }: Props) {
   const { t, i18n } = useTranslation();
   const [showTranscript, setShowTranscript] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [posterError, setPosterError] = useState(false);
 
-  // Pick the source for the active language, falling back to the first (English).
   const source = sources.find((s) => s.lang === i18n.language) ?? sources[0];
   const embedUrl = source.src ? toEmbedUrl(source.src) : null;
+  const posterUrl = source.src ? toPosterUrl(source.src, poster) : null;
   const isPlaceholder = !source.src || source.src.includes('REPLACE_WITH');
+  const canPlay = Boolean(embedUrl) && !isPlaceholder;
 
   return (
     <Box sx={{ mb: 3 }}>
+      {/* Full-width poster / play surface */}
       <Box
+        component={canPlay ? 'button' : 'div'}
+        type={canPlay ? 'button' : undefined}
+        onClick={canPlay ? () => setOpen(true) : undefined}
+        aria-label={canPlay ? `${t('article.watchTutorial')} (${source.label})` : undefined}
         sx={{
           position: 'relative',
+          display: 'block',
           width: '100%',
-          // The tutorial videos are square (1:1); matching the container stops
-          // the Drive player stretching them. Capped + centred so it isn't huge.
-          maxWidth: 460,
-          mx: 'auto',
-          aspectRatio: '1 / 1',
+          aspectRatio: '16 / 9',
           borderRadius: 3,
           overflow: 'hidden',
-          bgcolor: '#000',
+          p: 0,
           border: `1px solid ${safiTokens.divider}`,
+          bgcolor: '#0d0c1d',
+          cursor: canPlay ? 'pointer' : 'default',
         }}
       >
-        {isPlaceholder ? (
-          // No real link yet — friendly placeholder.
+        {posterUrl && !posterError ? (
           <Box
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 1,
-              color: 'rgba(255,255,255,0.85)',
-              textAlign: 'center',
-              px: 3,
-            }}
-          >
-            <PlayCircleOutlineIcon sx={{ fontSize: 56 }} aria-hidden />
-            <Typography sx={{ fontWeight: 700 }}>{t('article.watchTutorial')}</Typography>
-            <Typography sx={{ fontSize: 13, opacity: 0.8 }}>
-              {source.label} — add the video link in <code>src/content/registry.ts</code>
-            </Typography>
-          </Box>
-        ) : embedUrl ? (
-          <iframe
-            key={embedUrl}
-            src={embedUrl}
-            title={`${t('article.watchTutorial')} (${source.label})`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-            allowFullScreen
-            style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 0 }}
+            component="img"
+            src={posterUrl}
+            alt=""
+            aria-hidden
+            onError={() => setPosterError(true)}
+            sx={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
-        ) : !failed ? (
-          <video
-            key={source.src}
-            controls
-            poster={poster}
-            preload="metadata"
-            onError={() => setFailed(true)}
-            style={{ width: '100%', height: '100%', objectFit: 'contain', background: '#000' }}
-          >
-            <source src={source.src} type="video/mp4" />
-            {source.captionsSrc && (
-              <track kind="captions" src={source.captionsSrc} srcLang={source.lang} label={source.label} default />
-            )}
-          </video>
         ) : (
           <Box
             sx={{
@@ -148,14 +136,80 @@ export function VideoPlayer({ sources, poster, transcript }: Props) {
               px: 3,
             }}
           >
-            <PlayCircleOutlineIcon sx={{ fontSize: 56 }} aria-hidden />
+            <VideocamOutlinedIcon sx={{ fontSize: 48 }} aria-hidden />
             <Typography sx={{ fontWeight: 700 }}>{t('article.watchTutorial')}</Typography>
-            <Typography sx={{ fontSize: 13, opacity: 0.8 }}>
-              {source.label} — could not load <code>{source.src}</code>
-            </Typography>
+            {isPlaceholder && (
+              <Typography sx={{ fontSize: 13, opacity: 0.8 }}>
+                {source.label} — add the video link in <code>src/content/registry.ts</code>
+              </Typography>
+            )}
+          </Box>
+        )}
+
+        {canPlay && (
+          <Box
+            aria-hidden
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: 'rgba(13,12,29,0.25)',
+            }}
+          >
+            <Box
+              sx={{
+                width: 72,
+                height: 72,
+                borderRadius: '50%',
+                bgcolor: 'rgba(255,255,255,0.92)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.35)',
+              }}
+            >
+              <PlayArrowRoundedIcon sx={{ fontSize: 44, color: safiTokens.primary, ml: '4px' }} />
+            </Box>
           </Box>
         )}
       </Box>
+
+      {/* Lightbox — plays the video at its true (square) aspect ratio */}
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        maxWidth={false}
+        PaperProps={{ sx: { bgcolor: 'transparent', boxShadow: 'none', m: 2, overflow: 'visible' } }}
+      >
+        <IconButton
+          onClick={() => setOpen(false)}
+          aria-label="Close video"
+          sx={{ position: 'absolute', top: -44, right: 0, color: '#fff' }}
+        >
+          <CloseIcon />
+        </IconButton>
+        <Box
+          sx={{
+            width: 'min(90vw, 560px)',
+            aspectRatio: '1 / 1',
+            bgcolor: '#000',
+            borderRadius: 2,
+            overflow: 'hidden',
+          }}
+        >
+          {open && embedUrl && (
+            <iframe
+              src={`${embedUrl}${embedUrl.includes('?') ? '&' : '?'}autoplay=1`}
+              title={`${t('article.watchTutorial')} (${source.label})`}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+              allowFullScreen
+              style={{ width: '100%', height: '100%', border: 0 }}
+            />
+          )}
+        </Box>
+      </Dialog>
 
       <Button
         onClick={() => setShowTranscript((v) => !v)}
