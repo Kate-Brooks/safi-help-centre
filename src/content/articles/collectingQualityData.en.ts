@@ -199,19 +199,6 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           ],
         },
         {
-          title: 'For best coverage',
-          blocks: [
-            {
-              type: 'callout',
-              variant: 'tip',
-              items: [
-                '**Capture at least 10 photos per load** - the more photos you take, the more representative the AI results are of the load.',
-                '**Avoid photographing the highly compressed side of the bale** and focus on the flatter bale faces.',
-              ],
-            },
-          ],
-        },
-        {
           title: 'Complete the analysis',
           blocks: [
             {
@@ -225,6 +212,14 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
                 alt: 'Completing the analysis to generate the AI report.',
                 src: 'screenshots/collecting-quality-data/07-complete.png',
               },
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              items: [
+                '**Capture at least 10 photos per load** - the more photos you take, the more representative the AI results are of the load.',
+                '**Avoid photographing the highly compressed side of the bale** and focus on the flatter bale faces.',
+              ],
             },
             {
               type: 'callout',
@@ -265,7 +260,7 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             {
               type: 'callout',
               variant: 'tip',
-              body: 'Train the AI and improve the accuracy on your material by sending feedback directly to our Machine Learning team. Simply **press and hold** the photo on mobile or **right-click** on desktop to leave a comment.',
+              body: '**Improve the AI accuracy for your material** by sending feedback directly to our Machine Learning team. Simply press and hold the photo on mobile or right-click on desktop to leave a comment.',
             },
           ],
         },

@@ -195,19 +195,6 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
           ],
         },
         {
-          title: 'Dla najlepszego pokrycia',
-          blocks: [
-            {
-              type: 'callout',
-              variant: 'tip',
-              items: [
-                '**Zrób co najmniej 10 zdjęć na ładunek** - im więcej zdjęć zrobisz, tym bardziej reprezentatywne dla ładunku będą wyniki AI.',
-                '**Unikaj fotografowania mocno sprasowanej strony beli** i skup się na płaskich powierzchniach beli.',
-              ],
-            },
-          ],
-        },
-        {
           title: 'Zakończ analizę',
           blocks: [
             {
@@ -221,6 +208,14 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
                 alt: 'Zakończenie analizy w celu wygenerowania raportu AI.',
                 src: 'screenshots/collecting-quality-data/07-complete.png',
               },
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              items: [
+                '**Zrób co najmniej 10 zdjęć na ładunek** - im więcej zdjęć zrobisz, tym bardziej reprezentatywne dla ładunku będą wyniki AI.',
+                '**Unikaj fotografowania mocno sprasowanej strony beli** i skup się na płaskich powierzchniach beli.',
+              ],
             },
             {
               type: 'callout',
@@ -261,7 +256,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
             {
               type: 'callout',
               variant: 'tip',
-              body: 'Trenuj AI i popraw dokładność na swoim materiale, wysyłając opinię bezpośrednio do naszego zespołu Machine Learning. Po prostu **przytrzymaj** zdjęcie na telefonie lub **kliknij prawym przyciskiem** na komputerze, aby zostawić komentarz.',
+              body: '**Popraw dokładność AI dla swojego materiału**, wysyłając opinię bezpośrednio do naszego zespołu Machine Learning. Po prostu przytrzymaj zdjęcie na telefonie lub kliknij prawym przyciskiem na komputerze, aby zostawić komentarz.',
             },
           ],
         },

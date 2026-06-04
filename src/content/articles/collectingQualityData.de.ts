@@ -195,19 +195,6 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           ],
         },
         {
-          title: 'Für die beste Abdeckung',
-          blocks: [
-            {
-              type: 'callout',
-              variant: 'tip',
-              items: [
-                '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** - je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
-                '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',
-              ],
-            },
-          ],
-        },
-        {
           title: 'Analyse abschließen',
           blocks: [
             {
@@ -221,6 +208,14 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
                 alt: 'Abschließen der Analyse zur Erstellung des KI-Berichts.',
                 src: 'screenshots/collecting-quality-data/07-complete.png',
               },
+            },
+            {
+              type: 'callout',
+              variant: 'tip',
+              items: [
+                '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** - je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
+                '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',
+              ],
             },
             {
               type: 'callout',
@@ -261,7 +256,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'callout',
               variant: 'tip',
-              body: 'Trainieren Sie die KI und verbessern Sie die Genauigkeit für Ihr Material, indem Sie Feedback direkt an unser Machine-Learning-Team senden. Halten Sie dazu auf dem Mobilgerät das Foto **gedrückt** oder klicken Sie am Desktop mit der **rechten Maustaste**, um einen Kommentar zu hinterlassen.',
+              body: '**Verbessern Sie die KI-Genauigkeit für Ihr Material**, indem Sie Feedback direkt an unser Machine-Learning-Team senden. Halten Sie dazu auf dem Mobilgerät das Foto gedrückt oder klicken Sie am Desktop mit der rechten Maustaste, um einen Kommentar zu hinterlassen.',
             },
           ],
         },
