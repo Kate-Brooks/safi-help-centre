@@ -72,7 +72,7 @@ export function MediaFigure({ media }: { media: MediaPlaceholder }) {
       {media.caption && (
         <Typography
           component="figcaption"
-          sx={{ mt: 1, fontSize: 12, color: safiTokens.textSecondary, fontStyle: 'italic' }}
+          sx={{ mt: 1, fontSize: 12, color: safiTokens.textSecondary, textAlign: 'center' }}
         >
           {media.caption}
         </Typography>
