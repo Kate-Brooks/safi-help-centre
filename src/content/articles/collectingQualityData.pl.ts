@@ -32,7 +32,7 @@ Zdjęcia zrobione w trybie offline można przesłać później przez Wi-Fi - alb
 
 Po przeanalizowaniu zdjęć zobaczysz tabelę składu porównującą specyfikacje materiałowe ustawione w ustawieniach z rzeczywistymi wynikami AI.
 
-Aby przejrzeć zdjęcia przeanalizowane przez AI, kliknij raport i przejdź do karty „Zdjęcia". Wybierz album AI, a zobaczysz wszystkie zdjęcia zrobione podczas sesji. Pokażemy Ci przeanalizowany obszar obrysu beli i materiały wykryte przez AI. Możesz je włączać i wyłączać.
+Aby przejrzeć zdjęcia przeanalizowane przez AI, kliknij raport i przejdź do karty „Zdjęcia". Wybierz album AI, a zobaczysz wszystkie zdjęcia zrobione podczas sesji. Pokażemy Ci przeanalizowany obszar obrysu beli i materiały wykryte przez system AI. Możesz je włączać i wyłączać.
 
 Jeśli zauważysz problem z AI, na przykład wykrycie niewłaściwego obiektu, przytrzymaj zdjęcie i zostaw komentarz. Trafi on bezpośrednio do naszego zespołu Machine Learning, abyśmy mogli stale ulepszać dane Twojego zakładu.
 
@@ -40,7 +40,7 @@ Możesz też przesłać zdjęcia z urządzenia do analizy w krokach konfiguracji
 
 Raporty można łatwo udostępniać współpracownikom, a Ty możesz pobrać plik PDF raportu zawierający wszystkie zdjęcia i dane.
 
-Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz tworzyć ładunki, gdy przybywają na plac. W Kontroli jakości wybierz opcję utworzenia ładunku. Upewnij się, że wybierasz właściwą specyfikację materiału, aby nadać raportom sensowny kontekst - więcej o tym w osobnym filmie.`,
+Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz tworzyć ładunki, gdy przybywają na plac. W Kontroli jakości wybierz opcję utworzenia ładunku. Upewnij się, że wybierasz właściwą specyfikację materiału, aby nadać raportom odpowiedni kontekst - więcej o tym w osobnym filmie.`,
   sections: [
     {
       id: 'before-you-begin',
@@ -75,7 +75,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
           ],
         },
         {
-          title: 'Tworzenie ładunków w miarę ich przybywania',
+          title: 'Tworzenie ładunków po przybyciu',
           blocks: [
             {
               type: 'paragraph',
@@ -86,7 +86,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
               ordered: true,
               items: [
                 'W Kontroli jakości wybierz **Utwórz ładunek** lub **Rozpocznij analizę**.',
-                'Wprowadź **szczegóły ładunku** i wybierz właściwą **specyfikację materiału**, aby nadać raportom sensowny kontekst - więcej o tym w osobnym przewodniku.',
+                'Wprowadź **szczegóły ładunku** i wybierz właściwą **specyfikację materiału**, aby nadać raportom odpowiedni kontekst - więcej o tym w osobnym przewodniku.',
                 'Następnie zapisz ładunek lub dotknij **Otwórz aparat**, aby rozpocząć analizę materiału.',
               ],
             },
@@ -101,7 +101,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
           ],
         },
         {
-          title: 'Konfiguracja i otwarcie aparatu',
+          title: 'Konfiguracja i uruchomienie aparatu',
           blocks: [
             {
               type: 'list',
@@ -134,7 +134,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
       heading: 'Fotografowanie materiału',
       steps: [
         {
-          title: 'Wykadruj materiał',
+          title: 'Ustaw materiał w kadrze',
           blocks: [
             {
               type: 'list',
@@ -167,7 +167,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
               type: 'list',
               items: [
                 'W trybie **ręcznym** masz kontrolę nad robieniem zdjęć.',
-                'W trybie **automatycznym** zdjęcie jest robione za Ciebie (zalecane dla szybkiego i płynnego przepływu pracy).',
+                'W trybie **automatycznym** zdjęcie wykonywane jest automatycznie (zalecane dla szybkiego i płynnego przepływu pracy).',
               ],
             },
             {
@@ -240,7 +240,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
               variant: 'info',
               title: 'Ważne dla najlepszego pokrycia',
               items: [
-                '**Zrób co najmniej 10 zdjęć na ładunek** - im więcej zdjęć zrobisz, tym bardziej reprezentatywne dla ładunku będą wyniki AI.',
+                '**Zrób co najmniej 10 zdjęć na ładunek** - im więcej zdjęć zrobisz, tym bardziej reprezentatywne dla całego ładunku będą wyniki AI.',
                 '**Unikaj fotografowania mocno sprasowanej strony beli** i skup się na płaskich powierzchniach beli.',
               ],
             },
@@ -258,7 +258,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
       heading: 'Odczytaj wyniki',
       steps: [
         {
-          title: 'Przejrzyj tabelę składu',
+          title: 'Przejrzyj tabelę składu materiału',
           blocks: [
             {
               type: 'paragraph',
@@ -269,7 +269,7 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
               ordered: true,
               items: [
                 'Aby przejrzeć zdjęcia zrobione podczas sesji, przejdź do **karty Zdjęcia** i wybierz album AI.',
-                'Przeanalizowany obszar i **materiały wykryte przez AI** są pokazane dla każdego zdjęcia; możesz je włączać i wyłączać.',
+                'Przeanalizowany obszar i **materiały wykryte przez system AI** są pokazane dla każdego zdjęcia; możesz je włączać i wyłączać.',
               ],
             },
             {
