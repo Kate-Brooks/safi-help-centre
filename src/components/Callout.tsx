@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { safiTokens } from '../theme';
 import { RichText } from './RichText';
 
-type Variant = 'note' | 'tip' | 'important';
+type Variant = 'note' | 'tip' | 'important' | 'info';
 
 interface VariantStyle {
   accent: string; // icon, label, left border
@@ -36,6 +36,14 @@ const STYLES: Record<Variant, VariantStyle> = {
     bg: 'rgba(245,166,35,0.10)',
     Icon: WarningAmberOutlinedIcon,
     labelKey: 'article.important',
+  },
+  info: {
+    // Blue info — solid background, all copy uses #0288D1, "i" in circle icon.
+    accent: '#0288D1',
+    bg: '#E5F6FD',
+    text: '#0288D1',
+    Icon: InfoOutlinedIcon,
+    labelKey: '', // no small label row; the title acts as the heading
   },
 };
 
@@ -67,12 +75,14 @@ export function Callout({ variant, body, title, items }: Props) {
     >
       <s.Icon sx={{ color: s.accent, mt: '2px' }} fontSize="small" aria-hidden />
       <Box sx={{ flex: 1, minWidth: 0 }}>
-        <Typography
-          component="span"
-          sx={{ color: s.accent, fontWeight: 700, fontSize: 13, display: 'block', mb: 0.5 }}
-        >
-          {t(s.labelKey)}
-        </Typography>
+        {s.labelKey && (
+          <Typography
+            component="span"
+            sx={{ color: s.accent, fontWeight: 700, fontSize: 13, display: 'block', mb: 0.5 }}
+          >
+            {t(s.labelKey)}
+          </Typography>
+        )}
         {title && (
           <Typography variant="body1" sx={{ fontWeight: 700, mb: 0.5, ...(textColor && { color: textColor }) }}>
             <RichText text={title} />

@@ -211,7 +211,8 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
             },
             {
               type: 'callout',
-              variant: 'tip',
+              variant: 'info',
+              title: 'Ważne dla najlepszego pokrycia',
               items: [
                 '**Zrób co najmniej 10 zdjęć na ładunek** - im więcej zdjęć zrobisz, tym bardziej reprezentatywne dla ładunku będą wyniki AI.',
                 '**Unikaj fotografowania mocno sprasowanej strony beli** i skup się na płaskich powierzchniach beli.',

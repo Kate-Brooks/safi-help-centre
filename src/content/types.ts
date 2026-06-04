@@ -27,7 +27,7 @@ export type ContentBlock =
   | { type: 'paragraph'; body: string }
   | {
       type: 'callout';
-      variant: 'note' | 'tip' | 'important';
+      variant: 'note' | 'tip' | 'important' | 'info';
       /** Optional bold heading shown above the body inside the callout. */
       title?: string;
       /** Body text (optional when only a list is shown). */

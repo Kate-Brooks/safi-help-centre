@@ -211,7 +211,8 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             },
             {
               type: 'callout',
-              variant: 'tip',
+              variant: 'info',
+              title: 'Wichtig für die beste Abdeckung',
               items: [
                 '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** - je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
                 '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',

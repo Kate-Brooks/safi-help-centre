@@ -215,7 +215,8 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
             },
             {
               type: 'callout',
-              variant: 'tip',
+              variant: 'info',
+              title: 'Important for best coverage',
               items: [
                 '**Capture at least 10 photos per load** - the more photos you take, the more representative the AI results are of the load.',
                 '**Avoid photographing the highly compressed side of the bale** and focus on the flatter bale faces.',
