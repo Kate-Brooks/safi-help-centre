@@ -79,6 +79,32 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
           ],
         },
         {
+          title: 'Create loads as they arrive',
+          blocks: [
+            {
+              type: 'paragraph',
+              body: 'If the load doesn’t already exist, you can create and analyse loads as they arrive at the yard.',
+            },
+            {
+              type: 'list',
+              ordered: true,
+              items: [
+                'In Quality Control, select **Create load** or **Start analysing**.',
+                'Enter the **load details** and choose the correct **material specification** to give your reports meaningful context - more on that in a separate guide.',
+                'Then save the load or tap **Open camera** to start analysing the material.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Creating a load on arrival and choosing its material specification.',
+                src: 'screenshots/collecting-quality-data/11-create-load.png',
+              },
+            },
+          ],
+        },
+        {
           title: 'Set-up & open camera',
           blocks: [
             {
@@ -295,32 +321,6 @@ If your site doesn't import loads into Safi in advance, you can create loads as 
                 kind: 'screenshot',
                 alt: 'Downloading the report as a PDF and sharing it, with the language selector.',
                 src: 'screenshots/collecting-quality-data/10-share.png',
-              },
-            },
-          ],
-        },
-        {
-          title: 'Create loads as they arrive',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'If your site doesn’t import loads into Safi in advance, you can **create loads** as they arrive at the yard.',
-            },
-            {
-              type: 'list',
-              ordered: true,
-              items: [
-                'In Quality Control, select **Create load** or **Start analysing**.',
-                'Enter the **load details** and choose the correct **material specification** to give your reports meaningful context - more on that in a separate guide.',
-                'Then save the load or tap **Open camera** to start analysing the material.',
-              ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Creating a load on arrival and choosing its material specification.',
-                src: 'screenshots/collecting-quality-data/11-create-load.png',
               },
             },
           ],

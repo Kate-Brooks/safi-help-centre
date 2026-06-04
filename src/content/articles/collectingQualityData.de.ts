@@ -75,6 +75,32 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
           ],
         },
         {
+          title: 'Ladungen bei Ankunft anlegen',
+          blocks: [
+            {
+              type: 'paragraph',
+              body: 'Wenn die Ladung noch nicht existiert, können Sie Ladungen bei Ankunft am Hof anlegen und analysieren.',
+            },
+            {
+              type: 'list',
+              ordered: true,
+              items: [
+                'Wählen Sie in der Qualitätskontrolle **Ladung anlegen** oder **Analyse starten**.',
+                'Geben Sie die **Ladungsdetails** ein und wählen Sie die richtige **Materialspezifikation**, um Ihren Berichten einen sinnvollen Kontext zu geben - mehr dazu in einer separaten Anleitung.',
+                'Speichern Sie dann die Ladung oder tippen Sie auf **Kamera öffnen**, um mit der Analyse des Materials zu beginnen.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Anlegen einer Ladung bei Ankunft und Auswahl ihrer Materialspezifikation.',
+                src: 'screenshots/collecting-quality-data/11-create-load.png',
+              },
+            },
+          ],
+        },
+        {
           title: 'Einrichten & Kamera öffnen',
           blocks: [
             {
@@ -291,32 +317,6 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
                 kind: 'screenshot',
                 alt: 'Herunterladen des Berichts als PDF und Teilen, mit der Sprachauswahl.',
                 src: 'screenshots/collecting-quality-data/10-share.png',
-              },
-            },
-          ],
-        },
-        {
-          title: 'Ladungen bei Ankunft anlegen',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie **Ladungen anlegen**, sobald sie auf dem Hof eintreffen.',
-            },
-            {
-              type: 'list',
-              ordered: true,
-              items: [
-                'Wählen Sie in der Qualitätskontrolle **Ladung anlegen** oder **Analyse starten**.',
-                'Geben Sie die **Ladungsdetails** ein und wählen Sie die richtige **Materialspezifikation**, um Ihren Berichten einen sinnvollen Kontext zu geben - mehr dazu in einer separaten Anleitung.',
-                'Speichern Sie dann die Ladung oder tippen Sie auf **Kamera öffnen**, um mit der Analyse des Materials zu beginnen.',
-              ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Anlegen einer Ladung bei Ankunft und Auswahl ihrer Materialspezifikation.',
-                src: 'screenshots/collecting-quality-data/11-create-load.png',
               },
             },
           ],

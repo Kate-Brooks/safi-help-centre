@@ -118,7 +118,7 @@ export function ArticlePage() {
       clone.querySelectorAll('img').forEach((img) => {
         const el = img as HTMLImageElement;
         el.style.maxWidth = '100%';
-        el.style.maxHeight = '780px';
+        el.style.maxHeight = '520px';
         el.style.width = 'auto';
         el.style.height = 'auto';
         el.style.objectFit = 'contain';
@@ -165,8 +165,12 @@ export function ArticlePage() {
         const topMargin = logo ? logoY + logoH + 5.3 : 14; // ~20px below the logo
         const bottomMargin = 16;
         const maxH = pageH - topMargin - bottomMargin;
-        let y = topMargin;
+        const pageBottom = pageH - bottomMargin;
 
+        // Pre-render every unit to an image first, so we can keep a section
+        // heading on the same page as its first step (no stranded headings).
+        type Rendered = { data: string; w: number; h: number; isHeading: boolean };
+        const rendered: Rendered[] = [];
         for (const unit of units) {
           const canvas = await html2canvas(unit, {
             scale: 2,
@@ -175,7 +179,6 @@ export function ArticlePage() {
             windowWidth: RENDER_W,
           });
           if (!canvas.width || !canvas.height) continue;
-
           let w = contentW;
           let h = (canvas.height * contentW) / canvas.width;
           if (h > maxH) {
@@ -183,18 +186,28 @@ export function ArticlePage() {
             h = maxH;
             w = (canvas.width * maxH) / canvas.height;
           }
+          rendered.push({
+            data: canvas.toDataURL('image/jpeg', 0.92),
+            w,
+            h,
+            isHeading: unit.tagName === 'H2',
+          });
+        }
 
-          // Extra breathing room above section headings.
-          if (unit.tagName === 'H2' && y > topMargin) y += 4;
-
-          if (y + h > pageH - bottomMargin) {
+        let y = topMargin;
+        rendered.forEach((u, i) => {
+          if (u.isHeading && y > topMargin) y += 4; // breathing room above headings
+          // Keep a section heading with its first following unit (step).
+          let needed = u.h;
+          if (u.isHeading && rendered[i + 1]) needed += 3 + rendered[i + 1].h;
+          if (y + needed > pageBottom && y > topMargin) {
             pdf.addPage();
             y = topMargin;
           }
-          const x = marginX + (contentW - w) / 2; // centre when shrunk
-          pdf.addImage(canvas.toDataURL('image/jpeg', 0.92), 'JPEG', x, y, w, h);
-          y += h + 3; // small gap between units
-        }
+          const x = marginX + (contentW - u.w) / 2; // centre when shrunk
+          pdf.addImage(u.data, 'JPEG', x, y, u.w, u.h);
+          y += u.h + 3; // small gap between units
+        });
 
         // Safi logo header + page numbers on every page.
         const total = pdf.getNumberOfPages();

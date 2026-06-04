@@ -75,6 +75,32 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
           ],
         },
         {
+          title: 'Tworzenie ładunków w miarę ich przybywania',
+          blocks: [
+            {
+              type: 'paragraph',
+              body: 'Jeśli ładunek jeszcze nie istnieje, możesz tworzyć i analizować ładunki w miarę ich przybywania na plac.',
+            },
+            {
+              type: 'list',
+              ordered: true,
+              items: [
+                'W Kontroli jakości wybierz **Utwórz ładunek** lub **Rozpocznij analizę**.',
+                'Wprowadź **szczegóły ładunku** i wybierz właściwą **specyfikację materiału**, aby nadać raportom sensowny kontekst - więcej o tym w osobnym przewodniku.',
+                'Następnie zapisz ładunek lub dotknij **Otwórz aparat**, aby rozpocząć analizę materiału.',
+              ],
+            },
+            {
+              type: 'media',
+              media: {
+                kind: 'screenshot',
+                alt: 'Tworzenie ładunku po przybyciu i wybór jego specyfikacji materiału.',
+                src: 'screenshots/collecting-quality-data/11-create-load.png',
+              },
+            },
+          ],
+        },
+        {
           title: 'Konfiguracja i otwarcie aparatu',
           blocks: [
             {
@@ -291,32 +317,6 @@ Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz t
                 kind: 'screenshot',
                 alt: 'Pobieranie raportu jako PDF i udostępnianie go, z selektorem języka.',
                 src: 'screenshots/collecting-quality-data/10-share.png',
-              },
-            },
-          ],
-        },
-        {
-          title: 'Tworzenie ładunków w miarę ich przybywania',
-          blocks: [
-            {
-              type: 'paragraph',
-              body: 'Jeśli Twój zakład nie importuje ładunków do Safi z wyprzedzeniem, możesz **tworzyć ładunki**, gdy przybywają na plac.',
-            },
-            {
-              type: 'list',
-              ordered: true,
-              items: [
-                'W Kontroli jakości wybierz **Utwórz ładunek** lub **Rozpocznij analizę**.',
-                'Wprowadź **szczegóły ładunku** i wybierz właściwą **specyfikację materiału**, aby nadać raportom sensowny kontekst - więcej o tym w osobnym przewodniku.',
-                'Następnie zapisz ładunek lub dotknij **Otwórz aparat**, aby rozpocząć analizę materiału.',
-              ],
-            },
-            {
-              type: 'media',
-              media: {
-                kind: 'screenshot',
-                alt: 'Tworzenie ładunku po przybyciu i wybór jego specyfikacji materiału.',
-                src: 'screenshots/collecting-quality-data/11-create-load.png',
               },
             },
           ],
