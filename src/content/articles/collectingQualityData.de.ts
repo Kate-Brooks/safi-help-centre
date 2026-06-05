@@ -7,7 +7,7 @@ import type { ArticleContent } from '../types';
 export const collectingQualityDataDe: ArticleContent = {
   title: 'Qualitätsdaten erfassen',
   summary:
-    'Analysieren Sie mit Safi AI die Materialqualität, erstellen Sie einen KI-Qualitätsbericht und prüfen Sie die Ergebnisse anhand Ihrer Materialspezifikationen.',
+    'Analysieren Sie die Materialqualität mit Safi AI, erstellen Sie einen KI-Qualitätsbericht und vergleichen Sie die Ergebnisse mit Ihren Materialspezifikationen.',
   transcript: `Willkommen bei der Qualitätskontrolle von Safi AI. In diesem Video zeigen wir Ihnen, wie Sie mit Safi AI die Materialqualität analysieren und KI-Berichte erstellen.
 
 Laden Sie zunächst die Safi AI App aus dem App Store herunter. Für die beste Leistung empfehlen wir ein iPhone 14 Pro oder neuer.
@@ -134,7 +134,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
       heading: 'Material fotografieren',
       steps: [
         {
-          title: 'Material ins Bild rücken',
+          title: 'Material im Bild erfassen',
           blocks: [
             {
               type: 'list',
@@ -241,7 +241,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
               title: 'Wichtig für die beste Abdeckung',
               items: [
                 '**Nehmen Sie mindestens 10 Fotos pro Ladung auf** - je mehr Fotos Sie machen, desto repräsentativer sind die KI-Ergebnisse für die Ladung.',
-                '**Vermeiden Sie die stark verdichtete Seite des Ballens** und konzentrieren Sie sich auf die flacheren Ballenflächen.',
+                '**Vermeiden Sie die stark verdichtete Seite des Ballens** und fotografieren Sie stattdessen die flacheren Ballenflächen.',
               ],
             },
             {
@@ -283,7 +283,7 @@ Wenn Ihr Standort Ladungen nicht im Voraus in Safi importiert, können Sie Ladun
             {
               type: 'callout',
               variant: 'tip',
-              body: '**Verbessern Sie die KI-Genauigkeit für Ihr Material**, indem Sie Feedback direkt an unser Machine-Learning-Team senden. Halten Sie dazu auf dem Mobilgerät das Foto gedrückt oder klicken Sie am Desktop mit der rechten Maustaste, um einen Kommentar zu hinterlassen.',
+              body: '**Verbessern Sie die Genauigkeit der KI für Ihr Material**, indem Sie Feedback direkt an unser Machine-Learning-Team senden. Halten Sie dazu auf dem Mobilgerät das Foto gedrückt oder klicken Sie am Desktop mit der rechten Maustaste, um einen Kommentar zu hinterlassen.',
             },
           ],
         },
