@@ -42,7 +42,7 @@ Puoi anche caricare le foto dal dispositivo da analizzare nei passaggi di config
 
 I report possono essere facilmente condivisi con i colleghi e puoi scaricare un PDF del report contenente tutte le foto e i dati.
 
-Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi man mano che arrivano in piazzale. In Qualità, seleziona l’opzione crea carico. Assicurati di scegliere la specifica del materiale corretta per dare ai tuoi report un contesto significativo - maggiori informazioni in un video separato.`,
+Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi man mano che arrivano nel piazzale. In Qualità, seleziona l’opzione crea carico. Assicurati di scegliere la specifica del materiale corretta per dare ai tuoi report un contesto significativo - maggiori informazioni in un video separato.`,
   sections: [
     {
       id: 'before-you-begin',
@@ -77,11 +77,11 @@ Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi 
           ],
         },
         {
-          title: 'Crea i carichi al loro arrivo',
+          title: 'Crea i carichi all’arrivo',
           blocks: [
             {
               type: 'paragraph',
-              body: 'Se il carico non esiste ancora, puoi creare e analizzare i carichi man mano che arrivano in piazzale.',
+              body: 'Se il carico non esiste ancora, puoi creare e analizzare i carichi man mano che arrivano nel piazzale.',
             },
             {
               type: 'list',
@@ -103,7 +103,7 @@ Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi 
           ],
         },
         {
-          title: 'Configura e apri la fotocamera',
+          title: 'Configura e avvia la fotocamera',
           blocks: [
             {
               type: 'list',
@@ -159,7 +159,7 @@ Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi 
           ],
         },
         {
-          title: 'Scegli l’acquisizione automatica o manuale',
+          title: 'Scatto automatico o manuale',
           blocks: [
             {
               type: 'paragraph',
@@ -285,7 +285,7 @@ Se il tuo sito non importa i carichi in Safi in anticipo, puoi creare i carichi 
             {
               type: 'callout',
               variant: 'tip',
-              body: '**Migliora la precisione dell’AI per il tuo materiale** inviando feedback direttamente al nostro team di Machine Learning. Tieni premuta la foto sul cellulare o fai clic con il tasto destro su desktop per lasciare un commento.',
+              body: '**Migliora la precisione dell’IA per il tuo materiale** inviando feedback direttamente al nostro team di Machine Learning. Tieni premuta la foto sul cellulare o fai clic con il tasto destro su desktop per lasciare un commento.',
             },
           ],
         },

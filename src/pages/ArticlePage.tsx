@@ -169,11 +169,13 @@ export function ArticlePage() {
 
         // Pre-render every unit to an image first, so we can keep a section
         // heading on the same page as its first step (no stranded headings).
-        type Rendered = { data: string; w: number; h: number; isHeading: boolean };
+        // 3x scale (~300 DPI) keeps text sharp; text-only blocks use lossless
+        // PNG, photo-heavy blocks use high-quality JPEG so the file stays small.
+        type Rendered = { data: string; fmt: 'PNG' | 'JPEG'; w: number; h: number; isHeading: boolean };
         const rendered: Rendered[] = [];
         for (const unit of units) {
           const canvas = await html2canvas(unit, {
-            scale: 2,
+            scale: 3,
             backgroundColor: '#ffffff',
             useCORS: true,
             windowWidth: RENDER_W,
@@ -186,12 +188,12 @@ export function ArticlePage() {
             h = maxH;
             w = (canvas.width * maxH) / canvas.height;
           }
-          rendered.push({
-            data: canvas.toDataURL('image/jpeg', 0.92),
-            w,
-            h,
-            isHeading: unit.tagName === 'H2',
-          });
+          const hasImage = !!unit.querySelector('img');
+          const fmt: 'PNG' | 'JPEG' = hasImage ? 'JPEG' : 'PNG';
+          const data = hasImage
+            ? canvas.toDataURL('image/jpeg', 0.97)
+            : canvas.toDataURL('image/png');
+          rendered.push({ data, fmt, w, h, isHeading: unit.tagName === 'H2' });
         }
 
         let y = topMargin;
@@ -205,7 +207,7 @@ export function ArticlePage() {
             y = topMargin;
           }
           const x = marginX + (contentW - u.w) / 2; // centre when shrunk
-          pdf.addImage(u.data, 'JPEG', x, y, u.w, u.h);
+          pdf.addImage(u.data, u.fmt, x, y, u.w, u.h);
           y += u.h + 3; // small gap between units
         });
 
