@@ -2,6 +2,7 @@ import type { Article, Category } from './types';
 import { collectingQualityDataEn } from './articles/collectingQualityData.en';
 import { collectingQualityDataDe } from './articles/collectingQualityData.de';
 import { collectingQualityDataPl } from './articles/collectingQualityData.pl';
+import { collectingQualityDataIt } from './articles/collectingQualityData.it';
 
 /**
  * Help Centre information architecture.
@@ -127,7 +128,8 @@ export const ARTICLES: Article[] = [
       en: collectingQualityDataEn,
       de: collectingQualityDataDe,
       pl: collectingQualityDataPl,
-      // es, sr, it: not yet authored — fall back to English with a banner.
+      it: collectingQualityDataIt,
+      // es, sr: not yet authored — fall back to English with a banner.
     },
   },
   // 3. Partner invites
