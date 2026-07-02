@@ -3,6 +3,7 @@ import { collectingQualityDataEn } from './articles/collectingQualityData.en';
 import { collectingQualityDataDe } from './articles/collectingQualityData.de';
 import { collectingQualityDataPl } from './articles/collectingQualityData.pl';
 import { collectingQualityDataIt } from './articles/collectingQualityData.it';
+import { collectingQualityDataEs } from './articles/collectingQualityData.es';
 
 /**
  * Help Centre information architecture.
@@ -129,7 +130,8 @@ export const ARTICLES: Article[] = [
       de: collectingQualityDataDe,
       pl: collectingQualityDataPl,
       it: collectingQualityDataIt,
-      // es, sr: not yet authored — fall back to English with a banner.
+      es: collectingQualityDataEs,
+      // sr: not yet authored — falls back to English with a banner.
     },
   },
   // 3. Partner invites
